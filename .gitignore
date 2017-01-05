@@ -1,0 +1,12 @@
+*.pyc
+*.pyo
+*.db
+.DS_Store
+.coverage
+local_settings.py
+/static/*
+!/static/js
+!/static/css
+!/static/fonts
+!/static/font-awesome-4.7.0
+
