@@ -52,11 +52,16 @@ def inscription(request):
             return redirect(reverse('payment'))
     return render(request, 'form.html', locals())
 
+@login_required
+def payment_choice(request):
+    return render(request, 'payment_choice.html', locals())
+
+
 # Create your views here.
 @login_required
-def payment(request):
+def payment(request,amount):
     print request.POST
-    amount = 100
+    print "amount = " + amount
     MERCANET_URL = settings.MERCANET_URL
     # Generate a 6 figure User.pk added to transactionReference to retrieve User after transaction is complete
     emptyList = "000000"
@@ -108,7 +113,9 @@ def automatic_query(request):
                 html_content = u"<p>Bonjour!</p> <p>Nous vous confirmons votre adhésion à l'AFUF pour l'année 2017, et nous vous remercions pour votre confiance!</p><p>pensez à garder précieusement votre login et votre mot de passe qui vont vous être donnés pour pouvoir accéder à toutes les informations du site <a href='www.afuf.fr' target='blank'>afuf.fr</a> <br /> <b>Le comité d'administration de l'AFUF</b></p><p>Login: "+profileToUpdate.email+"</p> <p> mot de passe : "+password+"</p>" 
                 msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
                 msg.attach_alternative(html_content, "text/html")
+                print "about to send mail"
                 msg.send()
+                print "mail to user sent to %s" % to
                 # except:
                 #     raise Exception('Erreur email pour user : %s, password : %s' % profileToUpdate.email, password)
             elif responseCode == "00":
