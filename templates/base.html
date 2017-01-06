@@ -147,7 +147,7 @@
             <h4 class="modal-title text-center">Connectez-vous</h4>
           </div>
           <div class="modal-body text-center">
-            <form action="{% url 'loginView' %}" method="post" class="form">
+            <form action="{% url 'connect' %}" method="post" class="form">
                 {% csrf_token %}
                 {% bootstrap_form loginForm %}
           </div>
