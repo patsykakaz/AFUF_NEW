@@ -18,6 +18,10 @@ from django.db import IntegrityError
 
 from forms import *
 
+def killUser(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
 def inscription(request):
     if not request.POST:
         form = NewUserForm()
@@ -62,6 +66,7 @@ def payment_choice(request):
 def payment(request,amount):
     print request.POST
     print "amount = " + amount
+    amount = int(amount)*100
     MERCANET_URL = settings.MERCANET_URL
     # Generate a 6 figure User.pk added to transactionReference to retrieve User after transaction is complete
     emptyList = "000000"
