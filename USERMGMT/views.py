@@ -22,6 +22,25 @@ def killUser(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+def connect(request):
+    error = False
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            try : 
+                login(request, user)
+            except:
+                print "error while retrieving user from email"
+                loginError = True
+        else:
+            loginError = True
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', locals())
+
 def inscription(request):
     if not request.POST:
         form = NewUserForm()
@@ -53,7 +72,7 @@ def inscription(request):
             newProfile.save()
             login(request, k)
             validation = "ALL GOOD"
-            return redirect(reverse('payment'))
+            return redirect(reverse('payment_choice'))
     return render(request, 'form.html', locals())
 
 @login_required
