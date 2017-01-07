@@ -131,7 +131,7 @@ def automatic_query(request):
                 password = hash_object.hexdigest()
                 password = str(password)[:8]
                 subject = "Adhésion à l'AFUF"
-                from_email = settings.NO_REPLY
+                from_email = settings.EMAIL_HOST_USER
                 to = profileToUpdate.email
                 text_content = u"Bonjour! Nous vous confirmons votre adhésion à l'AFUF pour l'année 2017, et nous vous remercions pour votre confiance! \nPensez à garder précieusement votre login et votre mot de passe qui vont vous être donnés pour pouvoir accéder à toutes les informations du site www.afuf.fr Le comité d'administration de l'AFUF \n login : "+profileToUpdate.email+"\n Mot de passe : "+password
                 html_content = u"<p>Bonjour!</p> <p>Nous vous confirmons votre adhésion à l'AFUF pour l'année 2017, et nous vous remercions pour votre confiance!</p><p>pensez à garder précieusement votre login et votre mot de passe qui vont vous être donnés pour pouvoir accéder à toutes les informations du site <a href='www.afuf.fr' target='blank'>afuf.fr</a> <br /> <b>Le comité d'administration de l'AFUF</b></p><p>Login: "+profileToUpdate.email+"</p> <p> mot de passe : "+password+"</p>" 
@@ -140,6 +140,14 @@ def automatic_query(request):
                 print "about to send mail"
                 msg.send()
                 print "mail to user sent to %s" % to
+                send_mail(
+                    'Subject here',
+                    'Here is the message.',
+                    'no-reply@afuf.fr',
+                    ['philippe@lesidecar.fr'],
+                    fail_silently=False,
+                )
+                print "second mail shoud be sent"
                 # except:
                 #     raise Exception('Erreur email pour user : %s, password : %s' % profileToUpdate.email, password)
             elif responseCode == "00":

@@ -70,17 +70,17 @@
 <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
         <li>
-            <a href='/lassociation'>L'AFUF</a>
+            <a href='/'>L'AFUF</a>
         </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         {% if not request.user.profile %}
         <li>
-            <a href='/user/register/'>ADHESION</a>
+            <a href='/user/inscription/'>ADHESION</a>
         </li>
         {% elif not request.user.profile.choix_adhesion %}
         <li>
-            <a href='/user/payment/'>PAIEMENT</a>
+            <a href='/user/payment_choice/'>PAIEMENT</a>
         </li>
         {% endif %}
 
