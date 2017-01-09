@@ -175,31 +175,34 @@ def list_profiles(request):
 
 @login_required
 def export_users_xls(request):
-    response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="users.xls"'
+    if request.user.is_staff:
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="users.xls"'
 
-    wb = xlwt.Workbook(encoding='utf-8')
-    ws = wb.add_sheet('Users')
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('Users')
 
-    # Sheet header, first row
-    row_num = 0
+        # Sheet header, first row
+        row_num = 0
 
-    font_style = xlwt.XFStyle()
-    font_style.font.bold = True
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
 
-    columns = ['nom', 'prenom', 'email', 'choix_adhesion', "adresse", 'tel', 'date_naissance', 'annee_ECN', 'semestre', 'annee_debut_post_internat', 'inter_region', 'service_actuel', 'diplome_master_2', 'diplome_DESC_andrologie', 'diplome_DESC_oncologie_1', 'diplome_DESC_oncologie_2', 'diplome_autre', 'statut_actuel', 'statut_autre', ]
+        columns = ['nom', 'prenom', 'email', 'choix_adhesion', "adresse", 'tel', 'date_naissance', 'annee_ECN', 'semestre', 'annee_debut_post_internat', 'inter_region', 'service_actuel', 'diplome_master_2', 'diplome_DESC_andrologie', 'diplome_DESC_oncologie_1', 'diplome_DESC_oncologie_2', 'diplome_autre', 'statut_actuel', 'statut_autre', ]
 
-    for col_num in range(len(columns)):
-        ws.write(row_num, col_num, columns[col_num], font_style)
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
 
-    # Sheet body, remaining rows
-    font_style = xlwt.XFStyle()
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
 
-    rows = Profile.objects.all().values_list('nom', 'prenom', 'email', 'choix_adhesion', "adresse", 'tel', 'date_naissance', 'annee_ECN', 'semestre', 'annee_debut_post_internat', 'inter_region', 'service_actuel', 'diplome_master_2', 'diplome_DESC_andrologie', 'diplome_DESC_oncologie_1', 'diplome_DESC_oncologie_2', 'diplome_autre', 'statut_actuel', 'statut_autre',)
-    for row in rows:
-        row_num += 1
-        for col_num in range(len(row)):
-            ws.write(row_num, col_num, row[col_num], font_style)
+        rows = Profile.objects.all().values_list('nom', 'prenom', 'email', 'choix_adhesion', "adresse", 'tel', 'date_naissance', 'annee_ECN', 'semestre', 'annee_debut_post_internat', 'inter_region', 'service_actuel', 'diplome_master_2', 'diplome_DESC_andrologie', 'diplome_DESC_oncologie_1', 'diplome_DESC_oncologie_2', 'diplome_autre', 'statut_actuel', 'statut_autre',)
+        for row in rows:
+            row_num += 1
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, row[col_num], font_style)
 
-    wb.save(response)
+        wb.save(response)
+    else: 
+        raise Exception('Non staff user trying to access profiles List')
     return response
