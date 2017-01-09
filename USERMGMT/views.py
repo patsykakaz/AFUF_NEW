@@ -18,6 +18,9 @@ from django.db import IntegrityError
 
 from forms import *
 
+def error(request):
+    raise Exception('ERRRRRRRROR')
+
 def killUser(request):
     logout(request)
     return HttpResponseRedirect('/')
@@ -79,8 +82,6 @@ def inscription(request):
 def payment_choice(request):
     return render(request, 'payment_choice.html', locals())
 
-
-# Create your views here.
 @login_required
 def payment(request,amount):
     print request.POST
@@ -131,7 +132,7 @@ def automatic_query(request):
                 password = hash_object.hexdigest()
                 password = str(password)[:8]
                 subject = "Adhésion à l'AFUF"
-                from_email = settings.EMAIL_HOST_USER
+                from_email = settings.NO_REPLY
                 to = profileToUpdate.email
                 text_content = u"Bonjour! Nous vous confirmons votre adhésion à l'AFUF pour l'année 2017, et nous vous remercions pour votre confiance! \nPensez à garder précieusement votre login et votre mot de passe qui vont vous être donnés pour pouvoir accéder à toutes les informations du site www.afuf.fr Le comité d'administration de l'AFUF \n login : "+profileToUpdate.email+"\n Mot de passe : "+password
                 html_content = u"<p>Bonjour!</p> <p>Nous vous confirmons votre adhésion à l'AFUF pour l'année 2017, et nous vous remercions pour votre confiance!</p><p>pensez à garder précieusement votre login et votre mot de passe qui vont vous être donnés pour pouvoir accéder à toutes les informations du site <a href='www.afuf.fr' target='blank'>afuf.fr</a> <br /> <b>Le comité d'administration de l'AFUF</b></p><p>Login: "+profileToUpdate.email+"</p> <p> mot de passe : "+password+"</p>" 
@@ -162,3 +163,11 @@ def automatic_query(request):
     else:
         return HttpResponse("No Post data sent. You're out of line pal ! ")
     return render(request, 'payment_response.html', locals())
+
+@login_required
+def list_profiles(request):
+    if request.user.is_staff:
+        profiles = Profile.objects.all().order_by("choix_adhesion")
+    else: 
+        raise Exception('Non staff user trying to access profiles List')
+    return render(request, 'USERMGMT/list_profiles.html', locals())

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load staticfiles i18n mezzanine_tags bootstrap3 %}
+
+{% block extra_css %}
+<style type="text/css">
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+        /*border-right: 1px solid #ddd;*/
+    }
+    #profile_table tbody tr{
+        height: 40px;
+        overflow: hidden;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.container:eq(2)').width('100%').css('margin-top',"52px");
+    });
+</script>
+{% endblock %}
+
+{% block main %}
+<table class="table table-bordered table-hover" id='profile_table'>
+    <thead>
+        <tr>
+            <th>id</th>
+            {# <th>Choix adhésion</th> #}
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Date de naissance</th>
+            <th>Année ECN</th>
+            <th>Semestre commencé</th>
+            <th>Année début post-internat</th>
+            <th>Inter région</th>
+            <th>Service actuel</th>
+            <th>Diplôme M2</th>
+            <th>DESC Andrologie</th>
+            <th>DESC Oncologie 1</th>
+            <th>DESC Oncologie 2</th>
+            <th>Autres diplômes</th>
+            <th>Statut actuel</th>
+            <th>Autre statut</th>
+            <th>Justificatif</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for element in profiles %}
+        <tr {% if element.choix_adhesion == 0 %} class='warning' {% elif element.choix_adhesion == 70 %} class='info' {% elif element.choix_adhesion == 120 %} class='success' {% else %} class='danger' {% endif %}>
+            <th>{{ element.pk }}</th>
+            {# <td class='{% if element.choix_adhesion == 70 %} alert-info {% elif element.choix_adhesion == 120 %} alert-success {% else %} alert-danger {% endif %}'> #}
+                {# {{ element.choix_adhesion }} #}
+            {# </td> #}
+            <td>{{ element.nom|title }}</td>
+            <td>{{ element.prenom|title }}</td>
+            <td><a href="mailto:{{ element.email }}">{{ element.email }}</a></td>
+            <td>{{ element.tel }}</td>
+            <td>{{ element.date_naissance }}</td>
+            <td>{{ element.annee_ECN }}</td>
+            <td>{{ element.semestre }}</td>
+            <td>{{ element.annee_debut_post_internat }}</td>
+            <td>{{ element.inter_region }}</td>
+            <td>{{ element.service_actuel }}</td>
+            <td>{{ element.diplome_master_2 }}</td>
+            <td>{{ element.diplome_DESC_andrologie }}</td>
+            <td>{{ element.diplome_DESC_oncologie_1 }}</td>
+            <td>{{ element.diplome_DESC_oncologie_2 }}</td>
+            <td>{{ element.diplome_autre }}</td>
+            <td>{{ element.statut_actuel }}</td>
+            <td>{{ element.statut_autre }}</td>
+            <td>{{ element.justificatif_scolarite }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

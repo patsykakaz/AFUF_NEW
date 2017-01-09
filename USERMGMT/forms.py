@@ -43,8 +43,8 @@ class NewUserForm(ModelForm):
         password = hash_object.hexdigest()
         password = str(password)[:8]
         print "password in form is : %s" % password
-        text_content = u"Merci de vous être inscrit sur notre site www.afuf.fr, une fois que vous aurez réglé votre adhésion pour 2017. \nVotre login : "+username+" \nVotre mot de passe : "+password
-        html_content = u"<p><b>Merci de vous être inscrit sur notre site www.afuf.fr</b>, une fois que vous aurez réglé votre adhésion pour 2017. <br /> Votre login : "+username+" <br />Votre mot de passe : "+password+"</p>"
+        text_content = u"Merci de vous être inscrit sur notre site www.afuf.fr, une fois que vous aurez réglé votre adhésion pour 2017. \nVotre login : "+to+" \nVotre mot de passe : "+password
+        html_content = u"<p><b>Merci de vous être inscrit sur notre site www.afuf.fr</b>, une fois que vous aurez réglé votre adhésion pour 2017. <br /> Votre login : "+to+" <br />Votre mot de passe : "+password+"</p>"
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         print "about to send mail"
