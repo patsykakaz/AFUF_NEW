@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^payment/(?P<amount>.+)/$', payment, name="payment"),
     url(r'^automatic_query/$', automatic_query, name="automatic_query"),
     url(r'^list_profiles/$', list_profiles, name="list_profiles"),
+    url(r'^export/xls/$', export_users_xls, name='export_users_xls'),
 ]

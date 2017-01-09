@@ -17,7 +17,7 @@ class Profile(models.Model):
     nom = models.CharField(max_length=255, blank=False)
     prenom = models.CharField(max_length=255, blank=False)
     date_naissance = models.CharField(max_length=255, blank=False, null=True, verbose_name='date de naissance')
-    adresse = models.CharField(max_length=255, verbose_name='adresse postale complète')
+    adresse = models.CharField(max_length=255, verbose_name='ADRESSE, CODE POSTAL ET VILLE')
     email = models.EmailField(blank=False, verbose_name='adresse email')
     tel = models.CharField(max_length=255, blank=False, verbose_name='téléphone')
     # photo = FileField(verbose_name=_("photo"), upload_to=upload_to("USERMGMT.Profile.photo", "profile"),format="Image", max_length=255, null=True, blank=True)
