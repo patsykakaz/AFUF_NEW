@@ -1,8 +1,9 @@
 
 
 .navbar{
-    /*background-color: rgb(50,50,60);*/
-    border-bottom: 2px solid rgb(234,97,114);
+    margin-bottom: 0;
+    background-color: transparent;
+    border-bottom: none;
 }
 .navbar-brand{
     max-height: 50px;

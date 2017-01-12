@@ -18,9 +18,10 @@ class Event(Page, RichText):
     illustration = FileField(verbose_name=_("illustration"),
         upload_to=upload_to("MAIN.Event.illustration", "Event"),
         format="Image", max_length=255, null=True, blank=False)
-    sponsor_event = models.ForeignKey("Sponsor")
+    sponsor_event = models.ForeignKey("Sponsor", blank=True)
     location = models.CharField(max_length=255, verbose_name='Lieu de l\'évènement')
     pinpoint = models.URLField(verbose_name='Lien externe pour localiser l\'évènement (google maps...)', blank=True)
+    link_event = models.URLField(verbose_name='Lien vers le site évènement', blank=True)
     date_event = models.DateField(verbose_name='Date évènement', blank=False)
     time_event = models.CharField(max_length=255, verbose_name='Horaires évènement', blank=False)
     subscription_limit = models.CharField(max_length=255, verbose_name='Date limite d\'inscription', blank=False)
@@ -31,9 +32,13 @@ class Event(Page, RichText):
         verbose_name = 'EVENEMENT'
         verbose_name_plural = 'EVENEMENTS'
 
-    # def save(self, *args, **kwargs):
-        # print 'saving profile for : ' + self.email
-        # super(Profile, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        try: 
+            parent = Page.objects.get(title="EVENTS")
+            self.parent = parent
+        except:
+            pass
+        super(Event, self).save(*args, **kwargs)
 
     # def __str__(self):
         # return '%s %s' % (self.nom, self.prenom)

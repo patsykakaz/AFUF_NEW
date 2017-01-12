@@ -1,0 +1,16 @@
+
+
+#carousel{
+    width: 100%;
+}
+
+.event{
+    margin-top: 30px;
+}
+.event_slot{
+    background-color: rgba(0,0,0,.1);
+    overflow: hidden;
+}
+.event_slot img{
+    max-width: 100%;
+}

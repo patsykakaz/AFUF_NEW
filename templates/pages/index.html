@@ -1,10 +1,87 @@
-{% extends "pages/richtextpage.html" %}
+{% extends "base.html" %}
+{% load pages_tags mezzanine_tags i18n staticfiles blog_tags keyword_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/index.css" %}">
+{% endblock %}
 
 {% block main %}
-<!--
-This template is provided as a custom template for the homepage, for
-when it is configured as an editable page in the navigation tree. Feel
-free to modify it.
--->
-{{ block.super }}
+
+<div id="carousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        <li data-target="#carousel" data-slide-to="2"></li>
+        {% if last_blog %}
+        <li data-target="#carousel" data-slide-to="3"></li>
+        {% endif %}
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <a href='/'>
+                <img src="http://lesidecar.fr/static/CDN/24_8.png">
+            </a>
+        </div>
+        <div class="item">
+            <a href='/'>
+                <img src="http://lesidecar.fr/static/CDN/24_8_GREEN.png">
+            </a>
+        </div>
+        <div class="item">
+            <a href='/'>
+                <img src="http://lesidecar.fr/static/CDN/24_8.png">
+            </a>
+        </div>
+    </div>
+    <!-- Controls -->
+    {# <a class="left carousel-control" href="#carousel" role="button" data-slide="prev"> #}
+        {# <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> #}
+        {# <span class="sr-only">Previous</span> #}
+    {# </a> #}
+    {# <a class="right carousel-control" href="#carousel" role="button" data-slide="next"> #}
+        {# <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> #}
+        {# <span class="sr-only">Next</span> #}
+    {# </a> #}
+</div>
+
+<div id='events'>
+    {% for element in Events %}
+        <div class='event container'>
+            <div class='event_slot col-md-3 col-sm-4 col-xs-12'>
+                <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 0 400 %}' alt='illustration {{ element.title }}'>
+            </div>
+
+            <div class='event_slot col-md-6 col-sm-8 col-xs-12'>
+                <div>
+                    {{ element.description_from_content|safe }}
+                </div>
+                {% if element.link_event %}
+                <div>
+                    <a href="{{ element.link_event }}" target='blank'>Lien vers le site de l'évènement</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class='event_slot col-md-3 col-sm-4 col-xs-12 text-right'>
+                <div class='event_info'>
+                    {{ element.date_event }}
+                </div>
+                <div class='event_info'>
+                    {{ element.time_event }}
+                </div>
+                <div class='event_info'>
+                    {{ element.subscription_limit }}
+                </div>
+                {% if element.documentation %}
+                <div>
+                    <i class='fa fa-download'></i>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
 {% endblock %}

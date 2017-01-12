@@ -53,55 +53,89 @@
 
 <body id="{% block body_id %}body{% endblock %}">
 
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-<div class="container">
-<div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">{% trans "Toggle Navigation" %}</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
-    {% block navbar_title %}
-    {# {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/"><img src='{% static "img/afuf.jpg" %}' alt='logo AFUF' /></a>{% endif %} #}
-    {# {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %} #}
-    {% endblock%}
-</div>
-<div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav navbar-left">
-        <li>
-            <a href='/lassociation/'>L'AFUF</a>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-        {% if not request.user.profile %}
-        <li>
-            <a href='/user/inscription/'>ADHESION</a>
-        </li>
-        {% elif not request.user.profile.choix_adhesion %}
-        <li>
-            <a href='/user/payment_choice/'>PAIEMENT</a>
-        </li>
-        {% endif %}
+<div class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">{% trans "Toggle Navigation" %}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% block navbar_title %}
+            {# {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %} #}
+            {% endblock%}
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                {% if not request.user.profile %}
+                <li class='blue'>
+                    <a href='/user/inscription/'>Rejoingez-nous</a>
+                </li>
+                {% elif not request.user.profile.choix_adhesion %}
+                <li class='blue'>
+                    <a href='/user/payment_choice/'>Finir votre inscription</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href='/lassociation/'>Qui sommes-nous ?</a>
+                </li>
+                <li>
+                    <a href='/lassociation/'>Nos partenaires</a>
+                </li>
+                {# <li> #}
+                    {# <a href='/'>Some other page</a> #}
+                {# </li> #}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
 
-        {% if request.user.username %}
-        <li id='login_CAT'>
-            <a href="/user/logout/">
-                Logout [{{ request.user.username }}]
+                {% if request.user.username %}
+                <li id='login_CAT'>
+                    <a href="/user/logout/">
+                        Logout [{{ request.user.username }}]
+                    </a>
+                </li>
+                {% else %}
+                <li id='login_CAT'>
+                    <a href data-toggle="modal" data-target="#modal_login">
+                        Login <i class='fa fa-user-circle'></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+            {# {% block navbar_search_form %}{% search_form "all" %}{% endblock %} #}
+            {# {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%} #}
+        </div>
+    </div>
+    <div class="container">
+        <div id='logo' class='text-center'>
+            <img src='{% static "img/afuf.jpg" %}' alt='logo AFUF' />
+        </div>
+    </div>
+    <div id='all_navCat' class='text-center'>
+        <div class='navCat {% if cat == targetCat %}booyah{% endif%}'>
+            <a href='{{ cat.get_absolute_url }}'>Evènements & Formations</a>
+        </div>
+        <div class='navCat {% if cat == targetCat %}booyah{% endif%}'>
+            <a href='{{ cat.get_absolute_url }}'>Régions & CHU</a>
+        </div>
+        <div class='navCat {% if cat == targetCat %}booyah{% endif%}'>
+            <a href='{{ cat.get_absolute_url }}'>Le Comité</a>
+        </div>
+        <div class='navCat {% if cat == targetCat %}booyah{% endif%}'>
+            <a href='{{ cat.get_absolute_url }}'>
+                <span class='desktop'>
+                    Remplacements, Installations et Assurance Professionnelles
+                </span>
+                <span class='mobile'>
+                    Remplacements, Installations, Ass. Pro.
+                </span>
             </a>
-        </li>
-        {% else %}
-        <li id='login_CAT'>
-            <a href data-toggle="modal" data-target="#modal_login">
-                <i class='fa fa-user-circle'></i>
-            </a>
-        </li>
-        {% endif %}
-    </ul>
-    {# {% block navbar_search_form %}{% search_form "all" %}{% endblock %} #}
-    {# {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%} #}
-</div>
-</div>
+        </div>
+        {# <div class='navCat {% if cat == targetCat %}booyah{% endif%}'> #}
+            {# <a href='{{ cat.get_absolute_url }}'>Lorem ipsum dolor sit amet</a> #}
+        {# </div> #}
+    </div>
 </div>
 
 <div class="container">
@@ -129,13 +163,7 @@
 
 </div>
 
-<div class="container" style='margin-top:100px;'>
-<div class="row">
-
-{% block main %}{% endblock %}
-
-</div>
-</div>
+<div style='min-height:800px'>{% block main %}{% endblock %}</div>
 
 
 {% if not request.user.username %}

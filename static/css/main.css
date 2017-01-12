@@ -8,7 +8,7 @@ body{
     letter-spacing: 1.6px;
 }
 
-h1,h2,h3,.title{
+.navbar,h1,h2,h3,.title{
     font-family: 'Reem Kufi', sans-serif;
 }
 .text-red, .text-red:hover, .text-red:visited,
@@ -16,20 +16,68 @@ a.text-red, a.text-red:hover, a.text-red:visited{
     color: rgb(234,97,114);
 }
 
-
-.formZone{
-    padding: 10px 20px;
-    border: 1px solid #E7E7E7;
-    background-color: #F8F8F8;
-    text-align: justify;
+#logo{
+    margin: 3.5% 0;
+    max-height: 70px;
+    overflow: hidden;
 }
-.formZone i.fa{
-    color: #428bca;
+#logo img{
+    max-height: 70px;
 }
-
+#all_navCat{
+    /*position: fixed;*/
+    /*top: 0;*/
+    max-width: 1170px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: auto;
+    background-color: rgb(255,255,255);
+    border-top: 1px solid rgba(0,0,0,.2);
+    border-bottom: none;
+    /*text-align: center;*/
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.navCat{
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 22px;
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
+    /*border: 1px solid transparent;*/
+    -moz-transition: color 0.1s ease-in-out;
+    -webkit-transition: color 0.1s ease-in-out;
+    -o-transition: color 0.1s ease-in-out;
+    transition: color 0.1s ease-in-out;
+}.navCat a{
+    /*color: #2d2f30;*/
+}.navCat a:hover, .navCat.booyah a{
+    /*color: #e42a25;*/
+}
 footer{
     margin-top: 80px;
 }
 footer img{
     max-height: 100px;
+}
+
+
+@media screen and (min-width: 768px){
+    .desktop{
+        display: inline-block;
+    }
+    .mobile{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px){
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: inline-block;
+    }
 }
