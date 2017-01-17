@@ -1,16 +1,56 @@
 
+img{
+    max-width: 100%;
+}
 
 #carousel{
     width: 100%;
 }
 
+.level{
+    margin: 100px 0;
+    padding: 20px 0 40px 0;
+}
+.level_title{
+    position: relative;
+    /*bottom: 25px;*/
+    margin: 20px 0 40px 0;
+    color: rgb(234,97,114);
+}
+
+#Events{
+}
 .event{
-    margin-top: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .event_slot{
-    background-color: rgba(0,0,0,.1);
     overflow: hidden;
 }
 .event_slot img{
     max-width: 100%;
 }
+
+#CHU{
+    padding: 0;
+    text-align: center;
+    background-color: rgba(0,0,0,.1);
+}
+
+#Associates{
+}
+.associate{
+    /*background-color: rgb(240,240,240);*/
+}
+
+
+#RIA{
+    background-color: #f9f9f9;
+}
+#RIA h3{
+    margin: 20px 0;
+}
+
+
+
+

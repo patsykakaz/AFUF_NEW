@@ -46,15 +46,17 @@
     {# </a> #}
 </div>
 
-<div id='events'>
+<div class='level' id='Events'>
+    <div class='container'>
+    <h2 class='level_title'>Nos Evènements & Formations</h2>
     {% for element in Events %}
-        <div class='event container'>
+        <div class='event row'>
             <div class='event_slot col-md-3 col-sm-4 col-xs-12'>
                 <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 0 400 %}' alt='illustration {{ element.title }}'>
             </div>
 
             <div class='event_slot col-md-6 col-sm-8 col-xs-12'>
-                <div>
+                <div class='text-justify'>
                     {{ element.description_from_content|safe }}
                 </div>
                 {% if element.link_event %}
@@ -74,14 +76,97 @@
                 <div class='event_info'>
                     {{ element.subscription_limit }}
                 </div>
-                {% if element.documentation %}
+                {% if element.documentation and request.user.username %}
                 <div>
-                    <i class='fa fa-download'></i>
+                    {% if element.contact %}
+                        <a href='mailto:{{ element.contact }}' title='contact' style='margin-right:3px;'><i class='fa fa-lg fa-envelope'></i></a>
+                    {% endif %}
+                    <a href="/static/media/{{ element.documentation }}" title='documentation' target="blank">
+                        <i class='fa fa-lg fa-cloud-download'></i>
+                    </a>
                 </div>
                 {% endif %}
             </div>
         </div>
     {% endfor %}
+    </div>
+</div>
+
+<div class='level' id='CHU'>
+    <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1GhkLFV-rQ3NH7SY0Im_bQdTw1Yk" width="100%" height="480"></iframe>
+</div>
+
+<div class='level' id='Associates'>
+    <div class='container' id='folder_associates'>
+    <h2 class='level_title'>Le Comité d'Administration</h2>
+    {% for element in Associates %}
+        <div class='col-md-4 col-sm-4 col-xs-12'>
+            <div class='row associate'>
+                <div class='col-md-5'>
+                    <img src='{{ MEDIA_URL }}{% thumbnail element.photo 400 400 %}' class='img-thumbnail' alt='photo {{ element.prenom }} {{ element.title }}'>
+                </div>
+                <div class='col-md-7'>
+                    <h3>{{ element.prenom }} {{ element.title }}</h3>
+                    <div>
+                        {{ element.statut }}, {{ element.ville_exercice }}
+                    </div>
+                    <div class='SoMe'>
+                            <a href='mailto:{{ element.email }}'><i class='fa fa-envelope-o'></i></a>
+                        {% if element.facebook %}
+                            <a href='{{ element.facebook }}' target='blank'><i class='fa fa-facebook'></i></a>
+                        {% endif %}
+                        {% if element.linkedin %}
+                            <a href='{{ element.linkedin }}' target='blank'><i class='fa fa-linkedin'></i></a>
+                        {% endif %}
+                        {% if element.twitter %}
+                            <a href='{{ element.twitter }}' target='blank'><i class='fa fa-twitter'></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class='col-md-12 text-center' style='margin-top:30px;'>
+        <btn class='btn btn-info btn-success'>
+            Voir Plus 
+        </btn>
+    </div>
+    </div>
+</div>
+
+<div class='level' id='RIA'>
+    <div class='container'>
+    <h2 class='level_title'>Remplacement, Installations & Assurances Professionnelles</h2>
+    {% for element in RIAs %}
+        <div class='col-md-6 col-sm-6 col-xs-12'>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <h3 class='text-center'>
+                        {% if element.mail %}
+                        <span {% if forloop.counter0 == 0 %}class='pull-left'{% else %}class='pull-right'{% endif %}>
+                            <a href='mailto:{{ element.mail }}'><i class='fa fa-envelope'></i></a>
+                        </span>
+                        {% endif %}
+                        {{ element.title }}
+                    </h3>
+                    <div class='text-justify'>
+                        {{ element.description_from_content|safe }}
+                    </div>
+                </div>
+                {% if element.logo_sponsor %}
+                <div style='margin-top:20px;' class='col-md-3'>
+                    <img src='{{ MEDIA_URL }}{% thumbnail element.logo_sponsor 200 0 %}' class='img-thumbnail' alt='logo partenaire'>
+                </div>
+                {% endif %}
+                {% if element.illustration %}
+                <div style='margin-top:20px;' {% if element.logo_sponsor %} class='col-md-9' {% else %} class='col-md-12' {% endif %}>
+                    <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 600 200 %}' class='img-thumbnail' alt='illustration {{ element.title }}'>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

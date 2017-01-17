@@ -47,10 +47,12 @@ Associate_fieldsets = deepcopy(PageAdmin.fieldsets)
 Associate_fieldsets[0][1]["fields"].insert(-1, "prenom")
 Associate_fieldsets[0][1]["fields"].insert(-1, "statut")
 Associate_fieldsets[0][1]["fields"].insert(-1, "ville_exercice")
-Associate_fieldsets[0][1]["fields"].insert(-1, "content")
+Associate_fieldsets[0][1]["fields"].insert(-1, "photo")
+Associate_fieldsets[0][1]["fields"].insert(-1, "email")
 Associate_fieldsets[0][1]["fields"].insert(-1, "facebook")
 Associate_fieldsets[0][1]["fields"].insert(-1, "linkedin")
 Associate_fieldsets[0][1]["fields"].insert(-1, "twitter")
+Associate_fieldsets[0][1]["fields"].insert(-1, "content")
 class AssociateAdmin(PageAdmin):
     fieldsets = Associate_fieldsets
 

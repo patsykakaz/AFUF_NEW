@@ -25,7 +25,7 @@ class Event(Page, RichText):
     date_event = models.DateField(verbose_name='Date évènement', blank=False)
     time_event = models.CharField(max_length=255, verbose_name='Horaires évènement', blank=False)
     subscription_limit = models.CharField(max_length=255, verbose_name='Date limite d\'inscription', blank=False)
-    contact =  models.CharField(max_length=255, verbose_name='contact évènement')
+    contact =  models.EmailField(max_length=255, verbose_name='contact évènement')
     documentation = models.FileField(verbose_name='Doc évènement',upload_to='uploads/events/', blank=True, help_text='Documentation disponible au téléchargement pour les utilisateurs loggés')
 
     class Meta:
@@ -71,13 +71,22 @@ class CHU(Page):
         verbose_name = 'C.H.U'
         verbose_name_plural = 'C.H.U'
 
+    def save(self, *args, **kwargs):
+        try: 
+            parent = Page.objects.get(title="CHU")
+            self.parent = parent
+        except:
+            pass
+        super(CHU, self).save(*args, **kwargs)
+
 class Associate(Page, RichText):
     prenom = models.CharField(max_length=255, blank=False, verbose_name='Prénom',)
     photo = FileField(verbose_name=_("Photo"),
         upload_to=upload_to("MAIN.Associate.photo", "photo"),
-        format="Image", max_length=255, null=True, blank=False)
+        format="Image", max_length=255, null=False, blank=False)
     statut = models.CharField(max_length=255, blank=False, verbose_name='Statut',)
     ville_exercice = models.CharField(max_length=255, blank=False, verbose_name='Ville d\'exercice')
+    email = models.EmailField(null=False, blank=False)
     facebook = models.URLField(null=True, blank=True)
     linkedin = models.URLField(null=True, blank=True)
     twitter = models.URLField(null=True, blank=True)
@@ -85,6 +94,14 @@ class Associate(Page, RichText):
     class Meta:
         verbose_name = 'MEMBRE AFUF'
         verbose_name_plural = 'MEMBRES AFUF'
+
+    def save(self, *args, **kwargs):
+        try: 
+            parent = Page.objects.get(title="ASSOCIATES")
+            self.parent = parent
+        except:
+            pass
+        super(Associate, self).save(*args, **kwargs)
 
 class Sponsor(Page, RichText):
     logo = FileField(verbose_name=_("illustration"),
@@ -101,6 +118,14 @@ class Sponsor(Page, RichText):
     class Meta:
         verbose_name = 'SPONSOR'
         verbose_name_plural = 'SPONSORS'
+
+    def save(self, *args, **kwargs):
+        try: 
+            parent = Page.objects.get(title="SPONSORS")
+            self.parent = parent
+        except:
+            pass
+        super(Sponsor, self).save(*args, **kwargs)
 
 class RIA(Page, RichText):
     RIA_choices = (
@@ -121,3 +146,11 @@ class RIA(Page, RichText):
     class Meta:
         verbose_name = 'R.I.A'
         verbose_name_plural = 'R.I.A'
+
+    def save(self, *args, **kwargs):
+        try: 
+            parent = Page.objects.get(title="RIA")
+            self.parent = parent
+        except:
+            pass
+        super(RIA, self).save(*args, **kwargs)
