@@ -8,8 +8,8 @@ img{
 }
 
 .level{
-    margin: 100px 0;
-    padding: 20px 0 40px 0;
+    margin: 70px 0;
+    padding: 50px 0 90px 0;
 }
 .level_title h2{
     display: inline-block;
@@ -62,8 +62,14 @@ img{
     margin-bottom: 30px;
 }
 
+#Search{
+    background-color: rgb(234,97,114);
+    padding: 60px 0;
+}
+
 
 #RIA{
+    margin-top: 0;
     background-color: #f9f9f9;
 }
 #RIA h3{
@@ -105,5 +111,48 @@ img{
 .sponsor img{
     max-height: 100%;
 }
+#cat_sponsors{
+    margin-top: 30px;
+    opacity: 0;
+    -moz-transition: all .5s ease-out;
+    -webkit-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+}
 
 
+footer{
+    margin-top: 100px;
+}
+
+
+/* ! KEEP OUT OF bootstrap.override.css !  */
+.form-group > input[type="text"], .form-group > input[type="password"], .form-group > input[type="datetime"], .form-group > input[type="datetime-local"], .form-group > input[type="date"], .form-group > input[type="month"], .form-group > input[type="time"], .form-group > input[type="week"], .form-group > input[type="number"], .form-group > input[type="email"], .form-group > input[type="url"], .form-group > input[type="search"], .form-group > input[type="tel"], .form-group > input[type="color"], .form-group > select, .form-group > textarea{
+    display: inline-block;
+    height: 50px;
+    max-width: 300px;
+    padding: 10px 16px; 
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.1);
+    border: none;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #FFFFFF;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: pink;
+  opacity: .75;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: pink;
+  opacity: .75;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: pink;
+  opacity: .75;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: pink;
+  opacity: .75;
+}
+/* ./ ! KEEP OUT OF bootstrap.override.css !  */

@@ -27,6 +27,12 @@ $(window).resize(function(){
     SizeSponsors();
 });
 
+$(window).scroll(function(){
+    if($(window).scrollTop()+$(window).height()-200 > $('#cat_sponsors').offset().top){
+        $('#cat_sponsors').css('opacity',1);
+    }
+});
+
 
 function SizeSponsors(){
     widthToApply = ($('#sponsors_layer .row').width() -25*$('.sponsor').length ) / $('.sponsor').length;

@@ -161,6 +161,21 @@
     </div>
 </div>
 
+<div id='Search' class='text-center'>
+    <div class='container'>
+    <div class='row'>
+        <div class='col-md-12'>
+        <form method='POST' action='/search'>
+            <div class="form-group">
+                <i class='fa fa-search' style='margin-right:15px; padding:10px; border-radius:4px; background-color:#FFFFFF; color:rgb(234,97,114);'></i> 
+                <input id='search_input' type='text' placeholder="RECHERCHE">
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+
 <div class='level' id='RIA'>
     <div class='container'>
     <div class='row'>
@@ -238,6 +253,11 @@
                 <img src='{{ MEDIA_URL }}{% thumbnail element.logo 300 300 %}' alt='illustration {{ element.title }}' title='{{ element.title|title }}' />
             </div>
         {% endfor %}
+        <div id='cat_sponsors' class='col-md-12 text-center'>
+            <btn class='btn btn-large btn-default'>
+                Voir tous nos partenaires
+            </btn>
+        </div>
         </div>
     </div>
     </a>
