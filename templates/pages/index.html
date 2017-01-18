@@ -5,6 +5,29 @@
 <link rel="stylesheet" href="{% static "css/index.css" %}">
 {% endblock %}
 
+{% block extra_js %}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#CHU').addClass('scrolloff');                // set the mouse events to none when doc is ready
+        
+        $('#overlay').on("mouseup",function(){          // lock it when mouse up
+            $('#CHU').addClass('scrolloff'); 
+            //somehow the mouseup event doesn't get call...
+        });
+        $('#overlay').on("mousedown",function(){        // when mouse down, set the mouse events free
+            $('#CHU').removeClass('scrolloff');
+        });
+
+        $("#map").mouseleave(function () {              // becuase the mouse up doesn't work... 
+            $('#CHU').addClass('scrolloff');            // set the pointer events to none when mouse leaves the map area
+                                                        // or you can do it on some other event
+        });
+        
+    });
+</script>
+{% endblock %}
+
 {% block main %}
 
 <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -48,7 +71,14 @@
 
 <div class='level' id='Events'>
     <div class='container'>
-    <h2 class='level_title'>Nos Evènements & Formations</h2>
+    <div class='row'>
+    <div class='col-md-12 level_title'>
+        <h2>
+            Nos Evènements & Formations
+        </h2>
+        <div class='liner'></div>
+    </div>
+    </div>
     {% for element in Events %}
         <div class='event row'>
             <div class='event_slot col-md-3 col-sm-4 col-xs-12'>
@@ -57,25 +87,30 @@
 
             <div class='event_slot col-md-6 col-sm-8 col-xs-12'>
                 <div class='text-justify'>
+                    <h3>{{ element.title }}</h3>
                     {{ element.description_from_content|safe }}
                 </div>
                 {% if element.link_event %}
                 <div>
-                    <a href="{{ element.link_event }}" target='blank'>Lien vers le site de l'évènement</a>
+                    <a href="{{ element.link_event }}" target='blank'>
+                        <i class='fa fa-arrow-circle-o-right'></i> Lien vers le site de l'évènement
+                    </a>
                 </div>
                 {% endif %}
             </div>
 
             <div class='event_slot col-md-3 col-sm-4 col-xs-12 text-right'>
-                <div class='event_info'>
-                    {{ element.date_event }}
+                <div class='event_info' style='margin-top: 34px;'>
+                    <i class='fa fa-calendar text-info'></i> {{ element.date_event }}
                 </div>
                 <div class='event_info'>
-                    {{ element.time_event }}
+                    <i class='fa fa-clock-o text-info'></i> {{ element.time_event }}
                 </div>
-                <div class='event_info'>
-                    {{ element.subscription_limit }}
+                {% if element.subscription_limit %}
+                <div class='event_info label label-warning' style='margin-top:10px; padding: 2px 4px;'>
+                     {{ element.subscription_limit }}
                 </div>
+                {% endif %}
                 {% if element.documentation and request.user.username %}
                 <div>
                     {% if element.contact %}
@@ -92,13 +127,24 @@
     </div>
 </div>
 
-<div class='level' id='CHU'>
-    <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1GhkLFV-rQ3NH7SY0Im_bQdTw1Yk" width="100%" height="480"></iframe>
+<div class='level map' id='CHU'>
+    {# <h2 class='level_title'> #}
+        {# Nos C.H.U. #}
+        {# <div class='liner'></div> #}
+    {# </h2> #}
+    <iframe id="map" src="https://www.google.com/maps/d/u/1/embed?mid=1GhkLFV-rQ3NH7SY0Im_bQdTw1Yk" width="100%" height="550" frameborder="0" style="border:0; margin-top: -100px;" onClick="style.pointerEvents='none'" style="pointer-events:none;"></iframe>
 </div>
 
 <div class='level' id='Associates'>
     <div class='container' id='folder_associates'>
-    <h2 class='level_title'>Le Comité d'Administration</h2>
+    <div class='row'>
+    <div class='col-md-12 level_title'>
+        <h2>
+            Le Comité d'Administration
+        </h2>
+        <div class='liner'></div>
+    </div>
+    </div>
     {% for element in Associates %}
         <div class='col-md-4 col-sm-4 col-xs-12'>
             <div class='row associate'>
@@ -126,8 +172,8 @@
             </div>
         </div>
     {% endfor %}
-    <div class='col-md-12 text-center' style='margin-top:30px;'>
-        <btn class='btn btn-info btn-success'>
+    <div class='col-md-12 text-center' style='margin-top:50px;'>
+        <btn class='btn btn-large btn-default'>
             Voir Plus 
         </btn>
     </div>
@@ -136,23 +182,46 @@
 
 <div class='level' id='RIA'>
     <div class='container'>
-    <h2 class='level_title'>Remplacement, Installations & Assurances Professionnelles</h2>
+    <div class='row'>
+    <div class='col-md-12 level_title'>
+        <h2>
+            Remplacement, Installations & Assurances Professionnelles
+        </h2>
+        <div class='liner'></div>
+    </div>
+    </div>
     {% for element in RIAs %}
         <div class='col-md-6 col-sm-6 col-xs-12'>
             <div class='row'>
                 <div class='col-md-12'>
                     <h3 class='text-center'>
-                        {% if element.mail %}
-                        <span {% if forloop.counter0 == 0 %}class='pull-left'{% else %}class='pull-right'{% endif %}>
-                            <a href='mailto:{{ element.mail }}'><i class='fa fa-envelope'></i></a>
-                        </span>
-                        {% endif %}
                         {{ element.title }}
                     </h3>
                     <div class='text-justify'>
                         {{ element.description_from_content|safe }}
                     </div>
                 </div>
+                {% if element.mail %}
+                <div class='col-md-6 col-sm-6 col-xs-6'>
+                    <h4 class='text-center'>
+                        <a href='mailto:{{ element.mail }}' target='blank' class='alert alert-info'>
+                            <i class='fa fa-envelope'></i>
+                            Contact {{ element.choix_RIA }}
+                        </a>
+                    </h4>
+                </div>
+                {% endif %}
+                {% if element.target_link %}
+                <div {% if element.mail %} class='col-md-6 col-sm-6 col-xs-6 text-right' {% else %} class='col-md-12 col-sm-12 col-xs-12' {% endif %}>
+                    <h4>
+                        <a href='{{ element.target_link }}' target='blank'>
+                            <i class='fa fa-link'></i>
+                            Site Internet
+                        </a>
+                    </h4>
+                </div>
+                {% endif %}
+                <div class='liner'></div>
                 {% if element.logo_sponsor %}
                 <div style='margin-top:20px;' class='col-md-3'>
                     <img src='{{ MEDIA_URL }}{% thumbnail element.logo_sponsor 200 0 %}' class='img-thumbnail' alt='logo partenaire'>
@@ -165,6 +234,24 @@
                 {% endif %}
             </div>
         </div>
+    {% endfor %}
+    </div>
+</div>
+
+<div id='Sponsors' class='level'>
+    <div class='container'>
+    <div class='row'>
+    <div class='col-md-12 level_title'>
+        <h2>
+            Partenaires
+        </h2>
+        <div class='liner'></div>
+    </div>
+    </div>
+    </div>
+    <div id='sponsors_layer'>
+    {% for element in Sponsors %}
+        <div class='sponsor'>{{ element.title|title }}</div>
     {% endfor %}
     </div>
 </div>

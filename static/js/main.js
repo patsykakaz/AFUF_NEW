@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-    footerPush();
+    FooterPush();
 });
 
 $(window).load(function(){
@@ -8,18 +8,20 @@ $(window).load(function(){
     // $('#i18n').css('top',$('#logo').outerHeight()/2);
     if($(window).width()>991){
         $('.navCat').css('font-size',18);
-        navCat();
+        NavCat();
+        Liner();
     }
 });
 
 $(window).resize(function(){
     if($(window).width()>991){
         $('.navCat').css('font-size',18);
-        navCat();
+        NavCat();
+        Liner();
     }
 });
 
-function footerPush(){
+function FooterPush(){
     if($('footer').offset().top + $('footer').outerHeight() < $(window).height()){
         // 80 = 80px for the default footer.margin-top
         $('footer').css('margin-top', 80+$(window).height()-($('footer').offset().top+$('footer').outerHeight()));
@@ -27,7 +29,7 @@ function footerPush(){
 }
 
 
-function navCat(){
+function NavCat(){
     $("#all_navCat").removeClass('hide');
     if($('#all_navCat').outerHeight() > $('.navCat').outerHeight() +2){
         Fsize = parseFloat($('.navCat').css('font-size'))-0.05;
@@ -40,3 +42,18 @@ function navCat(){
         }
     }
 }
+
+function Liner(){
+    $('.level_title').each(function(){
+        h2 = $(this).children('h2');
+        liner = $(this).children('.liner');
+        liner.width($(this).width() - h2.outerWidth() - 26);
+        console.log(h2.width());
+    });
+}
+
+
+
+
+
+

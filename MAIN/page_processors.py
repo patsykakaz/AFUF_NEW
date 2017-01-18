@@ -10,5 +10,5 @@ def processor_home(request, page):
     Events = Event.objects.all()[:2]
     Associates = Associate.objects.all()
     RIAs = RIA.objects.all()
-    sponsors = Sponsor.objects.all()
+    Sponsors = Sponsor.objects.all()
     return locals()

@@ -11,14 +11,23 @@ img{
     margin: 100px 0;
     padding: 20px 0 40px 0;
 }
-.level_title{
-    position: relative;
-    /*bottom: 25px;*/
-    margin: 20px 0 40px 0;
+.level_title h2{
+    display: inline-block;
+    margin: 20px 20px 50px 0;
+    text-align: left;
     color: rgb(234,97,114);
+}
+.liner{
+    /*width: 20%;*/
+    display: inline-block;
+    height: 10px;
+    border-top: 1px solid rgb(234,97,114);
 }
 
 #Events{
+}
+#Events h3{
+    margin-top: 0;
 }
 .event{
     margin-top: 50px;
@@ -26,13 +35,20 @@ img{
 }
 .event_slot{
     overflow: hidden;
+    line-height: 20px;
 }
 .event_slot img{
     max-width: 100%;
 }
 
+.event_info{
+    margin-bottom: 6px;
+}
+
 #CHU{
     padding: 0;
+    height: 450px;
+    overflow: hidden;
     text-align: center;
     background-color: rgba(0,0,0,.1);
 }
@@ -51,6 +67,15 @@ img{
     margin: 20px 0;
 }
 
+
+#Sponsors{
+
+}
+
+#sponsors_layer{
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,.2);
+}
 
 
 
