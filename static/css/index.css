@@ -44,7 +44,18 @@ img{
 }
 
 .event_info{
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+}.event_info.icon_slot{
+    margin-top: 15px;
+}
+.event_info a i.fa{
+    color: rgba(234,97,114,.8);
+    -moz-transition: color 0.1s ease-in-out;
+    -webkit-transition: color 0.1s ease-in-out;
+    -o-transition: color 0.1s ease-in-out;
+    transition: color 0.1s ease-in-out;
+}.event_info a i.fa:hover{
+    color: rgb(234,97,114);
 }
 
 #CHU{

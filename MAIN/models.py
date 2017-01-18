@@ -24,7 +24,7 @@ class Event(Page, RichText):
     link_event = models.URLField(verbose_name='Lien vers le site évènement', blank=True)
     date_event = models.DateField(verbose_name='Date évènement', blank=False)
     time_event = models.CharField(max_length=255, verbose_name='Horaires évènement', blank=False)
-    subscription_limit = models.CharField(max_length=255, verbose_name='Date limite d\'inscription', blank=False)
+    subscription_limit = models.CharField(max_length=255, verbose_name='Date limite d\'inscription', blank=True)
     contact =  models.EmailField(max_length=255, verbose_name='contact évènement')
     documentation = models.FileField(verbose_name='Doc évènement',upload_to='uploads/events/', blank=True, help_text='Documentation disponible au téléchargement pour les utilisateurs loggés')
 

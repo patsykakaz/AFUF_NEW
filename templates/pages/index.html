@@ -88,12 +88,14 @@
                     <i class='fa fa-clock-o text-info'></i> {{ element.time_event }}
                 </div>
                 {% if element.subscription_limit %}
-                <div class='event_info label label-warning' style='margin-top:10px; padding: 2px 4px;'>
-                     {{ element.subscription_limit }}
+                <div class='event_info' style='padding: 2px 4px;'>
+                    <span class=' label label-primary'>
+                        {{ element.subscription_limit }}
+                    </span>
                 </div>
                 {% endif %}
                 {% if element.documentation and request.user.username %}
-                <div>
+                <div class='event_info icon_slot'>
                     {% if element.contact %}
                         <a href='mailto:{{ element.contact }}' title='contact' style='margin-right:3px;'><i class='fa fa-lg fa-envelope'></i></a>
                     {% endif %}
