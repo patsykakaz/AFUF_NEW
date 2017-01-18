@@ -11,6 +11,9 @@ body{
 .navbar,h1,h2,h3,.title{
     font-family: 'Reem Kufi', sans-serif;
 }
+a, a:hover, a:visited{
+    text-decoration: none;
+}
 .text-red, .text-red:hover, .text-red:visited,
 a.text-red, a.text-red:hover, a.text-red:visited{
     color: rgb(234,97,114);
@@ -29,11 +32,11 @@ a.text-red, a.text-red:hover, a.text-red:visited{
 
 #logo{
     margin: 3.5% 0;
-    max-height: 70px;
+    max-height: 90px;
     overflow: hidden;
 }
 #logo img{
-    max-height: 70px;
+    max-height: 90px;
 }
 #all_navCat{
     /*position: fixed;*/

@@ -6,26 +6,7 @@
 {% endblock %}
 
 {% block extra_js %}
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('#CHU').addClass('scrolloff');                // set the mouse events to none when doc is ready
-        
-        $('#overlay').on("mouseup",function(){          // lock it when mouse up
-            $('#CHU').addClass('scrolloff'); 
-            //somehow the mouseup event doesn't get call...
-        });
-        $('#overlay').on("mousedown",function(){        // when mouse down, set the mouse events free
-            $('#CHU').removeClass('scrolloff');
-        });
-
-        $("#map").mouseleave(function () {              // becuase the mouse up doesn't work... 
-            $('#CHU').addClass('scrolloff');            // set the pointer events to none when mouse leaves the map area
-                                                        // or you can do it on some other event
-        });
-        
-    });
-</script>
+<script src="{% static "js/index.js" %}"></script>
 {% endblock %}
 
 {% block main %}
@@ -44,17 +25,17 @@
     <div class="carousel-inner" role="listbox">
         <div class="item active">
             <a href='/'>
-                <img src="http://lesidecar.fr/static/CDN/24_8.png">
+                <img src="{% static 'img/carousel/evenements_formations.jpg' %}">
             </a>
         </div>
         <div class="item">
             <a href='/'>
-                <img src="http://lesidecar.fr/static/CDN/24_8_GREEN.png">
+                <img src="{% static 'img/carousel/RIA.jpg' %}">
             </a>
         </div>
         <div class="item">
             <a href='/'>
-                <img src="http://lesidecar.fr/static/CDN/24_8.png">
+                <img src="{% static 'img/carousel/region.jpg' %}">
             </a>
         </div>
     </div>
@@ -74,14 +55,14 @@
     <div class='row'>
     <div class='col-md-12 level_title'>
         <h2>
-            Nos Evènements & Formations
+            <i class='fa fa-genderless' style='margin-right:10px; position:relative; bottom:4px; font-size:18px;'></i>Nos Evènements & Formations
         </h2>
         <div class='liner'></div>
     </div>
     </div>
     {% for element in Events %}
         <div class='event row'>
-            <div class='event_slot col-md-3 col-sm-4 col-xs-12'>
+            <div class='event_slot col-md-3 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2'>
                 <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 0 400 %}' alt='illustration {{ element.title }}'>
             </div>
 
@@ -140,7 +121,7 @@
     <div class='row'>
     <div class='col-md-12 level_title'>
         <h2>
-            Le Comité d'Administration
+            <i class='fa fa-genderless' style='margin-right:10px; position:relative; bottom:4px; font-size:18px;'></i>Le Comité d'Administration
         </h2>
         <div class='liner'></div>
     </div>
@@ -185,7 +166,7 @@
     <div class='row'>
     <div class='col-md-12 level_title'>
         <h2>
-            Remplacement, Installations & Assurances Professionnelles
+            <i class='fa fa-genderless' style='margin-right:10px; position:relative; bottom:4px; font-size:18px;'></i>Remplacement, Installations & Assurances Professionnelles
         </h2>
         <div class='liner'></div>
     </div>
@@ -202,33 +183,33 @@
                     </div>
                 </div>
                 {% if element.mail %}
-                <div class='col-md-6 col-sm-6 col-xs-6'>
-                    <h4 class='text-center'>
+                <div class='col-md-8 col-sm-8 col-xs-12'>
+                    <h5>
                         <a href='mailto:{{ element.mail }}' target='blank' class='alert alert-info'>
                             <i class='fa fa-envelope'></i>
                             Contact {{ element.choix_RIA }}
                         </a>
-                    </h4>
+                    </h5>
                 </div>
                 {% endif %}
                 {% if element.target_link %}
-                <div {% if element.mail %} class='col-md-6 col-sm-6 col-xs-6 text-right' {% else %} class='col-md-12 col-sm-12 col-xs-12' {% endif %}>
-                    <h4>
+                <div {% if element.mail %} class='col-md-4 col-sm-4 col-xs-12 text-right' {% else %} class='col-md-12 col-sm-12 col-xs-12' {% endif %}>
+                    <h5>
                         <a href='{{ element.target_link }}' target='blank'>
                             <i class='fa fa-link'></i>
                             Site Internet
                         </a>
-                    </h4>
+                    </h5>
                 </div>
                 {% endif %}
                 <div class='liner'></div>
                 {% if element.logo_sponsor %}
-                <div style='margin-top:20px;' class='col-md-3'>
+                <div style='margin-top:20px;' class='col-md-3 col-sm-3 col-xs-3'>
                     <img src='{{ MEDIA_URL }}{% thumbnail element.logo_sponsor 200 0 %}' class='img-thumbnail' alt='logo partenaire'>
                 </div>
                 {% endif %}
                 {% if element.illustration %}
-                <div style='margin-top:20px;' {% if element.logo_sponsor %} class='col-md-9' {% else %} class='col-md-12' {% endif %}>
+                <div style='margin-top:20px;' class='text-center {% if element.logo_sponsor %} col-md-9 col-md-9 col-xs-9 {% else %} col-md-12 {% endif %}'>
                     <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 600 200 %}' class='img-thumbnail' alt='illustration {{ element.title }}'>
                 </div>
                 {% endif %}
@@ -240,20 +221,26 @@
 
 <div id='Sponsors' class='level'>
     <div class='container'>
-    <div class='row'>
-    <div class='col-md-12 level_title'>
-        <h2>
-            Partenaires
-        </h2>
-        <div class='liner'></div>
+        <div class='row'>
+        <div class='col-md-12 level_title'>
+            <h2>
+                <i class='fa fa-genderless' style='margin-right:10px; position:relative; bottom:4px; font-size:18px;'></i>Partenaires
+            </h2>
+            <div class='liner'></div>
+        </div>
+        </div>
     </div>
+    <a href='/sponsors'>
+    <div id='sponsors_layer' class='container text-center'>
+        <div class='row'>
+        {% for element in Sponsors %}
+            <div class='sponsor'>
+                <img src='{{ MEDIA_URL }}{% thumbnail element.logo 300 300 %}' alt='illustration {{ element.title }}' title='{{ element.title|title }}' />
+            </div>
+        {% endfor %}
+        </div>
     </div>
-    </div>
-    <div id='sponsors_layer'>
-    {% for element in Sponsors %}
-        <div class='sponsor'>{{ element.title|title }}</div>
-    {% endfor %}
-    </div>
+    </a>
 </div>
 
 {% endblock %}

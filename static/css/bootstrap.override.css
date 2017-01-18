@@ -12,6 +12,10 @@
 .navbar-brand img{
     max-height: 50px;
 }
+.navbar a:hover,.navbar a:focus{
+    text-decoration: none;
+    color: rgb(234,97,114);
+}
 
 .form-group{
     margin-bottom: 20px;
@@ -36,3 +40,26 @@ textarea{
 input[type="radio"], input[type="checkbox"]{
     margin: 5px 10px 5px 0;
 }
+
+.carousel-indicators li{
+    border: 1px solid rgb(234,97,114);
+}
+.carousel-indicators .active{
+    background-color: rgb(234,97,114);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

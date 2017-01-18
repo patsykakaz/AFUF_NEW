@@ -36,6 +36,8 @@ img{
 .event_slot{
     overflow: hidden;
     line-height: 20px;
+}.event_slot:first-child{
+    margin-bottom: 30px;
 }
 .event_slot img{
     max-width: 100%;
@@ -57,6 +59,7 @@ img{
 }
 .associate{
     /*background-color: rgb(240,240,240);*/
+    margin-bottom: 30px;
 }
 
 
@@ -69,13 +72,38 @@ img{
 
 
 #Sponsors{
-
 }
-
 #sponsors_layer{
-    width: 100%;
-    border-top: 1px solid rgba(0,0,0,.2);
+    /*width: 100%;*/
+    /*border-top: 1px solid rgba(0,0,0,.2);*/
 }
-
+.sponsor{
+    display: inline-block;
+    margin: 20px 20px 20px 0;
+    box-shadow: 1px 1px 1px 1px grey;
+    -moz-transition: all .5s ease-out;
+    -webkit-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+}.sponsor:last-child{
+    margin-right: 0;
+}
+.sponsor:hover{
+    /*opacity: .9;*/
+    -webkit-transition-delay: .66s;
+    -moz-transition-delay: .66s;
+    -o-transition-delay: .66s;
+    transition-delay: .66s;
+}
+.sponsor.opacitize{
+    opacity: .4;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+}
+.sponsor img{
+    max-height: 100%;
+}
 
 
