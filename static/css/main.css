@@ -48,11 +48,12 @@ a.text-red, a.text-red:hover, a.text-red:visited{
     background-color: rgb(255,255,255);
     border-top: 1px solid rgba(0,0,0,.2);
     border-bottom: none;
+    opacity: 0;
     /*text-align: center;*/
-    -moz-transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 .navCat{
     display: inline-block;

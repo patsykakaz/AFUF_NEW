@@ -40,6 +40,8 @@ function NavCat(){
         if(Fsize>0){
             setTimeout(NavCat(),5);
         }
+    }else{
+        $("#all_navCat").css('opacity',1);
     }
 }
 

@@ -1,6 +1,8 @@
 
 
 .navbar{
+    max-height: 266px;
+    overflow: hidden;
     margin-bottom: 0;
     background-color: transparent;
     border-bottom: none;
