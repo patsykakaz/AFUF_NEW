@@ -7,7 +7,7 @@ $(window).load(function(){
     $('.navbar.navbar-default').css('opacity',1);
     // $('#i18n').css('top',$('#logo').outerHeight()/2);
     if($(window).width()>991){
-        $('.navCat').css('font-size',18);
+        $('.navCat').css('font-size',26);
         NavCat();
         Liner();
     }
@@ -15,7 +15,7 @@ $(window).load(function(){
 
 $(window).resize(function(){
     if($(window).width()>991){
-        $('.navCat').css('font-size',18);
+        $('.navCat').css('font-size',14);
         NavCat();
         Liner();
     }
@@ -38,7 +38,7 @@ function NavCat(){
         $('.navCat').css('font-size',Fsize);
         $('.navCat').attr('rel',Fsize);
         if(Fsize>0){
-            setTimeout(navCat(),10);
+            setTimeout(NavCat(),5);
         }
     }
 }
