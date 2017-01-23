@@ -70,19 +70,14 @@
             <ul class="nav navbar-nav navbar-left">
                 {% if not request.user.profile %}
                 <li class='blue'>
-                    <a href='/user/inscription/'>Rejoingez-nous</a>
+                    <a href='/user/inscription/' style='background:#428bca; color:white;'>Rejoignez-nous</a>
                 </li>
                 {% elif not request.user.profile.choix_adhesion %}
                 <li class='blue'>
                     <a href='/user/payment_choice/'>Finir votre inscription</a>
                 </li>
                 {% endif %}
-                <li>
-                    <a href='/lassociation/'>Qui sommes-nous ?</a>
-                </li>
-                <li>
-                    <a href='/lassociation/'>Nos partenaires</a>
-                </li>
+                {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
                 {# <li> #}
                     {# <a href='/'>Some other page</a> #}
                 {# </li> #}
@@ -113,28 +108,23 @@
         </div>
     </div>
     <div id='all_navCat' class='text-center'>
-        <div class='navCat {% if cat == targetCat %}booyah{% endif%}'>
-            <a href='{{ cat.get_absolute_url }}'>Evènements & Formations</a>
+        <div class='navCat'>
+            <a href='/'>Evènements & Formations</a>
         </div>
-        <div class='navCat {% if cat == targetCat %}booyah{% endif%}'>
-            <a href='{{ cat.get_absolute_url }}'>Régions & CHU</a>
+        <div class='navCat'>
+            <a href='/'>Régions & CHU</a>
         </div>
-        <div class='navCat {% if cat == targetCat %}booyah{% endif%}'>
-            <a href='{{ cat.get_absolute_url }}'>Le Comité</a>
+        <div class='navCat'>
+            <a href='/'>Le Comité</a>
         </div>
-        <div class='navCat {% if cat == targetCat %}booyah{% endif%}'>
-            <a href='{{ cat.get_absolute_url }}'>
-                <span class='desktop'>
-                    Remplacements, Installations et Assurance Professionnelles
-                </span>
-                <span class='mobile'>
-                    Remplacements, Installations, Ass. Pro.
-                </span>
+        <div class='navCat'>
+            <a href='/'>
+                Remplacements & RCP
             </a>
         </div>
-        {# <div class='navCat {% if cat == targetCat %}booyah{% endif%}'> #}
-            {# <a href='{{ cat.get_absolute_url }}'>Lorem ipsum dolor sit amet</a> #}
-        {# </div> #}
+        <div class='navCat'>
+            <a href='/'>Nos Partenaires</a>
+        </div>
     </div>
 </div>
 
@@ -163,7 +153,7 @@
 
 </div>
 
-<div>{% block main %}{% endblock %}</div>
+<div id='Main'>{% block main %}{% endblock %}</div>
 
 
 {% if not request.user.username %}
@@ -198,6 +188,12 @@
         {# {% page_menu "pages/menus/footer.html" %} #}
         <div class="row text-center">
             <img src='{% static "img/afuf.jpg" %}' alt='logo AFUF' />
+        </div>
+        <div class='col-md-10 text-left'>
+        {% page_menu "pages/menus/footer.html" %}
+        </div>
+        <div class='col-md-2'>
+            <i class='fa fa-facebook'></i>
         </div>
     </div>
 </footer>

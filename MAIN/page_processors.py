@@ -8,7 +8,7 @@ from mezzanine.pages.page_processors import processor_for
 @processor_for('/')
 def processor_home(request, page):
     Events = Event.objects.all()[:2]
-    Associates = Associate.objects.all()
+    Associates = Associate.objects.all()[:6]
     RIAs = RIA.objects.all()
     Sponsors = Sponsor.objects.all()
     return locals()

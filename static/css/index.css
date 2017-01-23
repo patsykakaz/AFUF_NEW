@@ -8,8 +8,8 @@ img{
 }
 
 .level{
-    margin: 70px 0;
-    padding: 50px 0 90px 0;
+    margin: 60px 0 30px 0;
+    padding: 60px 0;
 }
 .level_title h2{
     display: inline-block;
@@ -25,6 +25,8 @@ img{
 }
 
 #Events{
+    margin-top: 10px;
+    padding-bottom: 0;
 }
 #Events h3{
     margin-top: 0;
@@ -59,11 +61,42 @@ img{
 }
 
 #CHU{
+    position: relative;
+    z-index: 999;
+    padding: 0;
+    text-align: center;
+    background-color: #FFFFFF;
+}
+#CHU_map_layer{
     padding: 0;
     height: 450px;
     overflow: hidden;
-    text-align: center;
-    background-color: rgba(0,0,0,.1);
+}
+#GMAP_overlay{
+    position:relative;
+    width: 100%; /* your iframe width */
+    height:480px; /* your iframe height */
+    /*top:480px;  your iframe height */
+    margin-top:-480px;  /* your iframe height */
+    background-color: rgba(255,255,255,.37);
+}
+#GMAP_overlay a,
+#GMAP_overlay a:hover,
+#GMAP_overlay a:visited{
+    text-decoration: none;
+    color: #428bca;
+    font-size: 24px;
+    -moz-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+#map_title h3{
+    display: inline-block;
+    margin: 0;
+    padding: 10px 20px;
+    background-color: rgba(255,255,255,.5);
+    border-radius: 4px;
 }
 
 #Associates{

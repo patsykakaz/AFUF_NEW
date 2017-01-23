@@ -31,12 +31,12 @@ a.text-red, a.text-red:hover, a.text-red:visited{
 
 
 #logo{
-    margin: 3.5% 0;
-    max-height: 90px;
+    margin: .75% 0 3.5% 0;
+    max-height: 125px;
     overflow: hidden;
 }
 #logo img{
-    max-height: 90px;
+    max-height: 125px;
 }
 #all_navCat{
     /*position: fixed;*/
@@ -74,6 +74,7 @@ a.text-red, a.text-red:hover, a.text-red:visited{
 footer{
     margin-top: 80px;
     background-color: rgb(234,97,114);
+    color: #FFFFFF;
 }
 footer img{
     position: relative;
@@ -82,6 +83,10 @@ footer img{
     padding: 20px;
     border-radius: 1000px;
     background-color: #FFFFFF;
+}
+footer a, footer a:hover, footer a:visited{
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 

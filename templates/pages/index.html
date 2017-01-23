@@ -111,11 +111,27 @@
 </div>
 
 <div class='level map' id='CHU'>
-    {# <h2 class='level_title'> #}
-        {# Nos C.H.U. #}
-        {# <div class='liner'></div> #}
-    {# </h2> #}
-    <iframe id="map" src="https://www.google.com/maps/d/u/1/embed?mid=1GhkLFV-rQ3NH7SY0Im_bQdTw1Yk" width="100%" height="550" frameborder="0" style="border:0; margin-top: -100px;" onClick="style.pointerEvents='none'" style="pointer-events:none;"></iframe>
+    <div class='container'>
+    <div class='row'>
+    <div class='col-md-12 level_title'>
+        <h2>
+            <i class='fa fa-genderless' style='margin-right:10px; position:relative; bottom:4px; font-size:18px;'></i>
+            Nos CHU
+        </h2>
+        <div class='liner'></div>
+    </div>
+    </div>
+    </div>
+    <div id='CHU_map_layer'>
+        <iframe id="map" src="https://www.google.com/maps/d/u/1/embed?mid=1GhkLFV-rQ3NH7SY0Im_bQdTw1Yk" width="100%" height="550" frameborder="0" style="border:0; margin-top: -100px;" scrolling="no"></iframe>
+        <div id="GMAP_overlay">
+            <a href='javascript:void(0)'>
+            <div id='map_title'>
+                <h3>Cliquez pour activer</h3>
+            </div>
+            </a>
+        </div>
+    </div>
 </div>
 
 <div class='level' id='Associates'>
@@ -177,6 +193,37 @@
     </div>
     </div>
 </div>
+
+
+
+<form action="{% url "search" %}" class="navbar-form navbar-right" role="search">
+
+<div class="form-group">
+    <input class="form-control" placeholder="{% trans "Search" %}" type="text" name="q" value="{{ request.REQUEST.q }}">
+</div>
+
+{% if search_model_choices %}
+    {% if search_model_choices|length == 1 %}
+    <input type="hidden" name="type" value="{{ search_model_choices.0.1 }}">
+    {% else %}
+    <div class="form-group">
+    <select class="form-control" name="type">
+        <option value="">{% trans "Everything" %}</option>
+        {% for verbose_name, model in search_model_choices %}
+        <option value="{{ model }}"
+            {% if model == request.REQUEST.type  %}selected{% endif %}>
+            {{ verbose_name }}
+        </option>
+        {% endfor %}
+    </select>
+    </div>
+    {% endif %}
+{% endif %}
+
+<input type="submit" class="btn btn-default" value="{% trans "Go" %}">
+
+</form>
+
 
 <div class='level' id='RIA'>
     <div class='container'>

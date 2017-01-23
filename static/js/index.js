@@ -1,26 +1,18 @@
 $(document).ready(function () {
-    $('#CHU').addClass('scrolloff');        
-    // set the mouse events to none when doc is ready
-    
-    $('#overlay').on("mouseup",function(){  
-    // lock it when mouse up
-        $('#CHU').addClass('scrolloff'); 
-        //somehow the mouseup event doesn't get call...
-    });
-    $('#overlay').on("mousedown",function(){
-    // when mouse down, set the mouse events free
-        $('#CHU').removeClass('scrolloff');
-    });
 
-    $("#map").mouseleave(function () {      
-    // becuase the mouse up doesn't work... 
-        $('#CHU').addClass('scrolloff');
-        // set the pointer events to none when mouse leaves the map area
-        // or you can do it on some other event
-    });
-
+    $('#map_title').css('padding-top', ($('#GMAP_overlay').height() - $('#map_title').height())/2.5).css('padding-bottom', ($('#GMAP_overlay').height() - $('#map_title').height())/1.5);
     SizeSponsors();
     SponsorOpacitize();
+
+    $('#GMAP_overlay').click(function(){
+        $('#GMAP_overlay').css('pointer-events','none');
+        $('#GMAP_overlay h3').css('opacity',0);
+    });
+    $('#map').mouseout(function(){
+        $('#GMAP_overlay').css('pointer-events','visible');
+        $('#GMAP_overlay h3').css('opacity',1);
+    });
+
 });
 
 $(window).resize(function(){
@@ -32,7 +24,6 @@ $(window).scroll(function(){
         $('#cat_sponsors').css('opacity',1);
     }
 });
-
 
 function SizeSponsors(){
     widthToApply = ($('#sponsors_layer .row').width() -25*$('.sponsor').length ) / $('.sponsor').length;
