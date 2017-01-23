@@ -1,7 +1,7 @@
 
 body{
     padding: 0;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-weight: lighter;
     font-size: 15px;
     line-height: 20px;
@@ -9,7 +9,7 @@ body{
 }
 
 .navbar,h1,h2,h3,.title{
-    font-family: 'Reem Kufi', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 a, a:hover, a:visited{
     text-decoration: none;
@@ -59,8 +59,8 @@ a.text-red, a.text-red:hover, a.text-red:visited{
     padding: 10px 10px;
     font-size: 22px;
     text-align: center;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: normal;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: lighter;
     /*border: 1px solid transparent;*/
     -moz-transition: color 0.1s ease-in-out;
     -webkit-transition: color 0.1s ease-in-out;
