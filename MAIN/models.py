@@ -14,6 +14,10 @@ from mezzanine.core.models import RichText
 from mezzanine.core.fields import RichTextField, FileField
 from mezzanine.utils.models import upload_to
 
+
+# class Home(Page):
+    
+
 class Event(Page, RichText):
     illustration = FileField(verbose_name=_("illustration"),
         upload_to=upload_to("MAIN.Event.illustration", "Event"),

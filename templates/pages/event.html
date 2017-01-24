@@ -1,0 +1,29 @@
+{% extends "pages/page.html" %}
+
+{% load pages_tags mezzanine_tags staticfiles blog_tags keyword_tags %}
+
+{% block extra_css %}
+<style type="text/css">
+    .illustration img{
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+
+    <div class='illustration'>
+        <img class='img-thumbnail' src='{{ MEDIA_URL }}{% thumbnail page.illustration 1200 300 %}' alt='illustration {{ page.title }}'>
+    </div>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-12'>
+                <h1 class='text-center'>{{ page.title }} {{ page.date_event }}</h1>
+                <div>
+                    {{ page.content|richtext_filters|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

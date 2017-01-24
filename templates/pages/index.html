@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load pages_tags mezzanine_tags i18n staticfiles blog_tags keyword_tags %}
+{% load pages_tags mezzanine_tags staticfiles blog_tags keyword_tags %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static "css/index.css" %}">
@@ -63,12 +63,18 @@
     {% for element in Events %}
         <div class='event row'>
             <div class='event_slot col-md-3 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2'>
-                <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 0 400 %}' alt='illustration {{ element.title }}'>
+                <a href='{{ element.get_absolute_url }}'>
+                    <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 0 400 %}' alt='illustration {{ element.title }}'>
+                </a>
             </div>
 
             <div class='event_slot col-md-6 col-sm-8 col-xs-12'>
                 <div class='text-justify'>
-                    <h3>{{ element.title }}</h3>
+                    <h3>
+                        <a href='{{ element.get_absolute_url }}'>
+                            {{ element.title }}
+                        </a>
+                    </h3>
                     {{ element.description_from_content|safe }}
                 </div>
                 {% if element.link_event %}
@@ -136,46 +142,52 @@
 
 <div class='level' id='Associates'>
     <div class='container' id='folder_associates'>
-    <div class='row'>
-    <div class='col-md-12 level_title'>
-        <h2>
-            <i class='fa fa-genderless' style='margin-right:10px; position:relative; bottom:4px; font-size:18px;'></i>Le Comité d'Administration
-        </h2>
-        <div class='liner'></div>
-    </div>
-    </div>
-    {% for element in Associates %}
-        <div class='col-md-4 col-sm-4 col-xs-12'>
-            <div class='row associate'>
-                <div class='col-md-5'>
-                    <img src='{{ MEDIA_URL }}{% thumbnail element.photo 400 400 %}' class='img-thumbnail' alt='photo {{ element.prenom }} {{ element.title }}'>
-                </div>
-                <div class='col-md-7'>
-                    <h3>{{ element.prenom }} {{ element.title }}</h3>
-                    <div>
-                        {{ element.statut }}, {{ element.ville_exercice }}
+        <div class='row'>
+            <div class='col-md-12 level_title'>
+                <h2>
+                    <i class='fa fa-genderless' style='margin-right:10px; position:relative; bottom:4px; font-size:18px;'></i>Le Comité d'Administration
+                </h2>
+                <div class='liner'></div>
+            </div>
+            {% for element in Associates %}
+                <div class='col-md-4 col-sm-4 col-xs-12'>
+                    <div class='row associate'>
+                        <div class='col-md-5'>
+                            <a href='{{ element.get_absolute_url }}'>
+                            <img src='{{ MEDIA_URL }}{% thumbnail element.photo 400 400 %}' class='img-thumbnail' alt='photo {{ element.prenom }} {{ element.title }}'>
+                            </a>
+                        </div>
+                        <div class='col-md-7'>
+                            <h3>
+                                <a href='{{ element.get_absolute_url }}'>
+                                    {{ element.prenom }} {{ element.title }}
+                                </a>
+                            </h3>
+                            <div>
+                                {{ element.statut }}, {{ element.ville_exercice }}
+                            </div>
+                            <div class='SoMe'>
+                                    <a href='mailto:{{ element.email }}'><i class='fa fa-envelope-o'></i></a>
+                                {% if element.facebook %}
+                                    <a href='{{ element.facebook }}' target='blank'><i class='fa fa-facebook'></i></a>
+                                {% endif %}
+                                {% if element.linkedin %}
+                                    <a href='{{ element.linkedin }}' target='blank'><i class='fa fa-linkedin'></i></a>
+                                {% endif %}
+                                {% if element.twitter %}
+                                    <a href='{{ element.twitter }}' target='blank'><i class='fa fa-twitter'></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                    <div class='SoMe'>
-                            <a href='mailto:{{ element.email }}'><i class='fa fa-envelope-o'></i></a>
-                        {% if element.facebook %}
-                            <a href='{{ element.facebook }}' target='blank'><i class='fa fa-facebook'></i></a>
-                        {% endif %}
-                        {% if element.linkedin %}
-                            <a href='{{ element.linkedin }}' target='blank'><i class='fa fa-linkedin'></i></a>
-                        {% endif %}
-                        {% if element.twitter %}
-                            <a href='{{ element.twitter }}' target='blank'><i class='fa fa-twitter'></i></a>
-                        {% endif %}
-                    </div>
                 </div>
+            {% endfor %}
+            <div class='col-md-12 text-center' style='margin-top:50px;'>
+                <btn class='btn btn-large btn-default'>
+                    Voir Plus 
+                </btn>
             </div>
         </div>
-    {% endfor %}
-    <div class='col-md-12 text-center' style='margin-top:50px;'>
-        <btn class='btn btn-large btn-default'>
-            Voir Plus 
-        </btn>
-    </div>
     </div>
 </div>
 
@@ -210,7 +222,9 @@
             <div class='row'>
                 <div class='col-md-12'>
                     <h3 class='text-center'>
-                        {{ element.title }}
+                        <a href='{{ element.get_absolute_url }}'>
+                            {{ element.title }}
+                        </a>
                     </h3>
                     <div class='text-justify'>
                         {{ element.description_from_content|safe }}

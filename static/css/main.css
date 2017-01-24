@@ -18,6 +18,13 @@ a, a:hover, a:visited{
 a.text-red, a.text-red:hover, a.text-red:visited{
     color: rgb(234,97,114);
 }
+h1>a, h2>a, h3>a, h4>a,
+h1>a:visited, h2>a:visited, h3>a:visited, h4>a:visited{
+    color: #333;
+}
+h1>a:hover, h2>a:hover, h3>a:hover, h4>a:hover{
+    color: #2a6496;
+}
 .scrolloff {
     pointer-events: none;
 }
@@ -67,10 +74,13 @@ a.text-red, a.text-red:hover, a.text-red:visited{
     -webkit-transition: color 0.1s ease-in-out;
     -o-transition: color 0.1s ease-in-out;
     transition: color 0.1s ease-in-out;
+}
+.navCat.On a{
+    color: #e42a25;
+    /*background-color: blue;*/
 }.navCat a{
     /*color: #2d2f30;*/
-}.navCat a:hover, .navCat.booyah a{
-    /*color: #e42a25;*/
+}.navCat a:hover, .navCat.On a{
 }
 footer{
     margin-top: 80px;

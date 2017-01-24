@@ -83,17 +83,21 @@
                 {# </li> #}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
+                <li>
+                    <a href="javascript:void(0)" title='recherche'>
+                        <i class='fa fa-search'></i>
+                    </a>
+                </li>
                 {% if request.user.username %}
                 <li id='login_CAT'>
-                    <a href="/user/logout/">
-                        Logout [{{ request.user.username }}]
+                    <a href="/user/logout/" style='color:rgb(234,97,114);' title='logout'>
+                        <i class='fa fa-user-circle'></i> {{ request.user.username }}
                     </a>
                 </li>
                 {% else %}
                 <li id='login_CAT'>
-                    <a href data-toggle="modal" data-target="#modal_login">
-                        Login <i class='fa fa-user-circle'></i>
+                    <a href data-toggle="modal" data-target="#modal_login" title='Login'>
+                        <i class='fa fa-user-circle'></i>
                     </a>
                 </li>
                 {% endif %}
@@ -108,23 +112,11 @@
         </div>
     </div>
     <div id='all_navCat' class='text-center'>
-        <div class='navCat'>
-            <a href='/'>Evènements & formations</a>
+        {% for element in navCats %}
+        <div class='navCat {% if element.1 != "/"  and element.1 in request.path %}On{% endif %}'>
+            <a href='{{ element.1 }}'>{{ element.0 }}</a>
         </div>
-        <div class='navCat'>
-            <a href='/'>Régions & CHU</a>
-        </div>
-        <div class='navCat'>
-            <a href='/'>Le Comité</a>
-        </div>
-        <div class='navCat'>
-            <a href='/'>
-                Remplacements & RCP
-            </a>
-        </div>
-        <div class='navCat'>
-            <a href='/'>Nos Partenaires</a>
-        </div>
+        {% endfor %}
     </div>
 </div>
 

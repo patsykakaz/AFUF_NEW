@@ -18,6 +18,9 @@
     text-decoration: none;
     color: rgb(234,97,114);
 }
+.nav.navbar-right > li > a{
+    padding: 15px 10px;
+}
 
 .form-group{
     margin-bottom: 20px;

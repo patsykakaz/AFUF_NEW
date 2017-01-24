@@ -12,3 +12,9 @@ def processor_home(request, page):
     RIAs = RIA.objects.all()
     Sponsors = Sponsor.objects.all()
     return locals()
+
+@processor_for(Event)
+def processor_event(request, page):
+    page = Event.objects.get(pk=page.pk)
+    print page
+    return locals()
