@@ -7,10 +7,28 @@ from mezzanine.pages.page_processors import processor_for
 
 @processor_for('/')
 def processor_home(request, page):
+    HomeX_data = HomeX.objects.last()
+    HomeX_data.inlines = HomeCaption.objects.filter(master=HomeX_data)
     Events = Event.objects.all()[:2]
-    Associates = Associate.objects.all()[:6]
-    RIAs = RIA.objects.all()
-    Sponsors = Sponsor.objects.all()
+    for E in Events:
+        E.inlines = EventDocumentation.objects.filter(master=E)
+    Associates = Associate.objects.all().order_by('-rank')
+    RIAs = RIA.objects.exclude(choix_RIA='Assurance professionnelle')
+    sponsor_all = Sponsor.objects.all()
+    i = 1
+    sponsor_list = []
+    chunk = []
+    for element in sponsor_all:
+        if i%6 == 0 or i == len(sponsor_all): 
+            chunk.append(element)
+            sponsor_list.append(chunk)
+            chunk = []
+        else: 
+            chunk.append(element)
+            # print u"#"+str(i)+str(chunk)
+        i += 1
+
+
     return locals()
 
 @processor_for(Event)

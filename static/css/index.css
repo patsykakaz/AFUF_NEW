@@ -50,14 +50,22 @@ img{
 }.event_info.icon_slot{
     margin-top: 15px;
 }
-.event_info a i.fa{
+.DL{
+    margin: 10px 0;
+    font-family: 'Lato', sans-serif;
+    /*font-weight: bolder;*/
+}
+.DL a{
     color: rgba(234,97,114,.8);
     -moz-transition: color 0.1s ease-in-out;
     -webkit-transition: color 0.1s ease-in-out;
     -o-transition: color 0.1s ease-in-out;
     transition: color 0.1s ease-in-out;
-}.event_info a i.fa:hover{
+}.DL a:hover{
     color: rgb(234,97,114);
+}
+.DL a.disabled, .DL a.disabled:hover{
+    color: rgb(100,100,100);
 }
 
 #CHU{
@@ -124,12 +132,13 @@ img{
 #Sponsors{
 }
 #sponsors_layer{
-    /*width: 100%;*/
+    width: 2000px;
+    background-color: red;
     /*border-top: 1px solid rgba(0,0,0,.2);*/
 }
 .sponsor{
     display: inline-block;
-    margin: 20px 20px 20px 0;
+    margin: 17px 20px 20px 3px;
     box-shadow: 1px 1px 1px 1px grey;
     -moz-transition: all .5s ease-out;
     -webkit-transition: all .5s ease-out;

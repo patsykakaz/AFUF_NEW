@@ -26,7 +26,9 @@ $(window).scroll(function(){
 });
 
 function SizeSponsors(){
-    widthToApply = ($('#sponsors_layer .row').width() -25*$('.sponsor').length ) / $('.sponsor').length;
+    widthToApply = ($('#carousel2').width()-25*$('#carousel2 .item').first().children('#carousel2 .sponsor').length )/$('#carousel2 .item').first().children('.sponsor').length;
+    // 25(px) = padding + min_margin between each $('.sponsor')
+
     $('.sponsor').each(function(){
         $(this).outerWidth(widthToApply);
     });

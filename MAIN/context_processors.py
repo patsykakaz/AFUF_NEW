@@ -7,10 +7,12 @@ from USERMGMT.forms import LoginForm
 def customContextProcessor(request):
 
     return {
-        "navCats": [("Evènements & formations", "/events"),
-                    ("Régions & CHU", "/regions/"),
-                    ("Le Comité","/"),
+        "navCats": [
+                    ("News","/news/"),
+                    ("Evènements", "/events"),
+                    ("CHU", "/regions/"),
+                    ("Comité","/"),
                     ("Remplacements & RCP","/"),
-                    ("Nos Partenaires","/")],
+                    ("Partenaires","/")],
         "loginForm": LoginForm()
     }

@@ -1,6 +1,7 @@
 
 body{
     padding: 0;
+    /*font-family: 'Lato', sans-serif;*/
     font-family: 'Quicksand', sans-serif;
     font-weight: lighter;
     font-size: 15px;
@@ -10,6 +11,7 @@ body{
 
 .navbar,h1,h2,h3,.title{
     font-family: 'Lato', sans-serif;
+    /*font-family: 'Quicksand', sans-serif;*/
 }
 a, a:hover, a:visited{
     text-decoration: none;
@@ -17,6 +19,9 @@ a, a:hover, a:visited{
 .text-red, .text-red:hover, .text-red:visited,
 a.text-red, a.text-red:hover, a.text-red:visited{
     color: rgb(234,97,114);
+}
+a.disabled, a.disabled:hover, a.disabled:visited{
+    color: rgb(100,100,100);
 }
 h1>a, h2>a, h3>a, h4>a,
 h1>a:visited, h2>a:visited, h3>a:visited, h4>a:visited{
@@ -53,9 +58,10 @@ h1>a:hover, h2>a:hover, h3>a:hover, h4>a:hover{
     padding-left: 15px;
     margin: auto;
     background-color: rgb(255,255,255);
-    border-top: 1px solid rgba(0,0,0,.2);
+    /*border-top: 1px solid rgb(234,97,114);*/
+    border-top: 1px solid rgb(234,97,114);;
     border-bottom: none;
-    opacity: 0;
+    /*opacity: 0;*/
     /*text-align: center;*/
     -moz-transition: all 0.4s ease-in-out;
     -webkit-transition: all 0.4s ease-in-out;
@@ -64,16 +70,26 @@ h1>a:hover, h2>a:hover, h3>a:hover, h4>a:hover{
 }
 .navCat{
     display: inline-block;
-    padding: 10px 10px;
-    font-size: 22px;
+    padding: 10px 20px 12px 20px;
+    font-size: 18px;
     text-align: center;
-    font-family: 'Quicksand', sans-serif;
+    /*font-family: 'Quicksand', sans-serif;*/
     font-weight: lighter;
+    /*letter-spacing: 4px;*/
     /*border: 1px solid transparent;*/
-    -moz-transition: color 0.1s ease-in-out;
-    -webkit-transition: color 0.1s ease-in-out;
-    -o-transition: color 0.1s ease-in-out;
-    transition: color 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}.navCat:hover{
+    background-color: rgb(234,97,114);
+    color: #FFFFFF;
+}
+.navCat a{
+    color: rgb(234,97,114);
+    letter-spacing: 2px;
+}.navCat:hover a{
+    color: white;
 }
 .navCat.On a{
     color: #e42a25;
@@ -99,6 +115,12 @@ footer a, footer a:hover, footer a:visited{
     color: #FFFFFF;
     text-decoration: none;
 }
+footer .rightSpace a .fa{
+    margin-left: 8px;
+}
+.rightSpace{
+    text-align: right;
+}
 
 
 @media screen and (min-width: 768px){
@@ -115,5 +137,8 @@ footer a, footer a:hover, footer a:visited{
     }
     .mobile{
         display: inline-block;
+    }
+    footer .rightSpace{
+        text-align: center;
     }
 }

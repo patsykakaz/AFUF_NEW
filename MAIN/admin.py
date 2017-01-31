@@ -6,6 +6,17 @@ from django.contrib import admin
 from mezzanine.pages.admin import PageAdmin
 from MAIN.models import *
 
+HomeX_fieldsets = deepcopy(PageAdmin.fieldsets)
+HomeX_fieldsets[0][1]["fields"].insert(-1, "partenaire_caption")
+HomeX_fieldsets[0][1]["fields"].insert(-1, "ria_caption")
+class HomeCaptionInline(admin.TabularInline):
+    model = HomeCaption
+    extra = 10
+class HomeXAdmin(PageAdmin):
+    inlines = (HomeCaptionInline,)
+    fieldsets = HomeX_fieldsets
+
+
 Event_fieldsets = deepcopy(PageAdmin.fieldsets)
 Event_fieldsets[0][1]["fields"].insert(-1, "illustration")
 Event_fieldsets[0][1]["fields"].insert(-1, "sponsor_event")
@@ -14,15 +25,14 @@ Event_fieldsets[0][1]["fields"].insert(-1, "pinpoint")
 Event_fieldsets[0][1]["fields"].insert(-1, "link_event")
 Event_fieldsets[0][1]["fields"].insert(-1, "date_event")
 Event_fieldsets[0][1]["fields"].insert(-1, "time_event")
-Event_fieldsets[0][1]["fields"].insert(-1, "subscription_limit")
 Event_fieldsets[0][1]["fields"].insert(-1, "contact")
-Event_fieldsets[0][1]["fields"].insert(-1, "documentation")
 Event_fieldsets[0][1]["fields"].insert(-1, "content")
+class EventInline(admin.TabularInline):
+    model = EventDocumentation
+    extra = 10
 class EventAdmin(PageAdmin):
+    inlines = (EventInline,)
     fieldsets = Event_fieldsets
-
-    # def has_module_permission(self, request):
-        # return True
 
 CHU_fieldsets = deepcopy(PageAdmin.fieldsets)
 CHU_fieldsets[0][1]["fields"].insert(-1, "region")
@@ -40,10 +50,8 @@ CHU_fieldsets[0][1]["fields"].insert(-1, "coordinateur")
 class CHUAdmin(PageAdmin):
     fieldsets = CHU_fieldsets
 
-    # def has_module_permission(self, request):
-        # return True
-
 Associate_fieldsets = deepcopy(PageAdmin.fieldsets)
+Associate_fieldsets[0][1]["fields"].insert(-1, "rank")
 Associate_fieldsets[0][1]["fields"].insert(-1, "prenom")
 Associate_fieldsets[0][1]["fields"].insert(-1, "statut")
 Associate_fieldsets[0][1]["fields"].insert(-1, "ville_exercice")
@@ -84,6 +92,7 @@ class SponsorAdmin(PageAdmin):
     # def has_module_permission(self, request):
         # return True
 
+admin.site.register(HomeX, HomeXAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(CHU, CHUAdmin)
 admin.site.register(Associate, AssociateAdmin)

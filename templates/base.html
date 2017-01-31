@@ -70,7 +70,7 @@
             <ul class="nav navbar-nav navbar-left">
                 {% if not request.user.profile %}
                 <li class='blue'>
-                    <a href='/user/inscription/' style='background:#428bca; color:white;'>Rejoignez-nous</a>
+                    <a href='/user/inscription/' style='background:rgb(234,97,114); color:white;'>Rejoignez-nous</a>
                 </li>
                 {% elif not request.user.profile.choix_adhesion %}
                 <li class='blue'>
@@ -181,11 +181,35 @@
         <div class="row text-center">
             <img src='{% static "img/afuf.jpg" %}' alt='logo AFUF' />
         </div>
-        <div class='col-md-10 text-left'>
-        {% page_menu "pages/menus/footer.html" %}
-        </div>
-        <div class='col-md-2'>
-            <i class='fa fa-facebook'></i>
+        <div class='row'>
+            <div class='col-md-6 col-sm-12 col-xs-12'>
+            {% page_menu "pages/menus/footer.html" %}
+            </div>
+            <div class='rightSpace col-md-6 col-sm-12 col-xs-12  text-right'>
+                <a href='http://www.linkedin.com/in/afuf-uro-42a101133' target='blank'>
+                    <i class='fa fa-2x fa-linkedin'></i>
+                </a>
+                <a href='http://www.facebook.com/afuf.uro.77?fref=ts' target='blank'>
+                    <i class='fa fa-2x fa-facebook'></i>
+                </a>
+                <a href='http://twitter.com/afufuro' target='blank'>
+                    <i class='fa fa-2x fa-twitter'></i>
+                </a>
+                <a href='http://www.instagram.com/afufuro/' target='blank'>
+                    <i class='fa fa-2x fa-instagram'></i>
+                </a>
+                <a href='http://plus.google.com/116204906201527055851?hl=fr' target='blank'>
+                    <i class='fa fa-2x fa-google-plus'></i>
+                </a>
+                <a href='http://itunes.apple.com/fr/app/pelvi-uro/id1173845798?mt=8' target='blank'>
+                    <i class='fa fa-2x fa-apple'></i>
+                    Pelvi-Uro
+                </a>
+                <a href='http://itunes.apple.com/fr/app/uropratik/id937935016?mt=8' target='blank'>
+                    <i class='fa fa-2x fa-apple'></i>
+                    UroPratik
+                </a>
+            </div>
         </div>
     </div>
 </footer>

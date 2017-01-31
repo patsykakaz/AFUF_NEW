@@ -15,8 +15,20 @@ from mezzanine.core.fields import RichTextField, FileField
 from mezzanine.utils.models import upload_to
 
 
-# class Home(Page):
-    
+
+class HomeX(Page):
+    partenaire_caption = RichTextField(help_text='Chapeau page Partenaires', null=False, blank=True)
+    ria_caption = RichTextField(help_text='Chapeau page R.I.A.', null=False, blank=True)
+class HomeCaption(models.Model):
+    master = models.ForeignKey("HomeX")
+    image = FileField(verbose_name=_("Image"),
+        upload_to=upload_to("MAIN.HomeX", "HomeX"),
+        format="Image", max_length=255, help_text='Dimensions souhaitées : 2400px par 800px')
+    lien = models.CharField(max_length=255, null=True, blank=True, help_text='Lien vers lequel dirige l\'image en question')
+    external = models.BooleanField(default=False, verbose_name='Externe ?')
+
+    class Meta:
+        verbose_name = 'Carousel'
 
 class Event(Page, RichText):
     illustration = FileField(verbose_name=_("illustration"),
@@ -28,9 +40,9 @@ class Event(Page, RichText):
     link_event = models.URLField(verbose_name='Lien vers le site évènement', blank=True)
     date_event = models.DateField(verbose_name='Date évènement', blank=False)
     time_event = models.CharField(max_length=255, verbose_name='Horaires évènement', blank=False)
-    subscription_limit = models.CharField(max_length=255, verbose_name='Date limite d\'inscription', blank=True)
+    # subscription_limit = models.CharField(max_length=255, verbose_name='Date limite d\'inscription', blank=True)
     contact =  models.EmailField(max_length=255, verbose_name='contact évènement')
-    documentation = models.FileField(verbose_name='Doc évènement',upload_to='uploads/events/', blank=True, help_text='Documentation disponible au téléchargement pour les utilisateurs loggés')
+    # documentation = models.FileField(verbose_name='Doc évènement',upload_to='uploads/events/', blank=True, help_text='Documentation disponible au téléchargement pour les utilisateurs loggés')
 
     class Meta:
         verbose_name = 'EVENEMENT'
@@ -44,8 +56,12 @@ class Event(Page, RichText):
             pass
         super(Event, self).save(*args, **kwargs)
 
-    # def __str__(self):
-        # return '%s %s' % (self.nom, self.prenom)
+class EventDocumentation(models.Model):
+    master = models.ForeignKey("Event")
+    file =  models.FileField(verbose_name='Doc évènement',upload_to='uploads/events/', blank=True, help_text='Documentation disponible au téléchargement pour les utilisateurs loggés')
+    nature = models.CharField(max_length=255, verbose_name='Nature document')
+    class Meta:
+        verbose_name = 'Documentation'
 
 class CHU(Page):
     region_choices = (
@@ -84,6 +100,7 @@ class CHU(Page):
         super(CHU, self).save(*args, **kwargs)
 
 class Associate(Page, RichText):
+    rank = models.IntegerField(default=0,verbose_name='Rang',help_text='Plus le nombre est grand, plus la personne arrivera en tete.')
     prenom = models.CharField(max_length=255, blank=False, verbose_name='Prénom',)
     photo = FileField(verbose_name=_("Photo"),
         upload_to=upload_to("MAIN.Associate.photo", "photo"),
@@ -113,9 +130,9 @@ class Sponsor(Page, RichText):
         format="Image", max_length=255, null=True, blank=True)
     website = models.URLField(null=True, blank=True)
     label_choices = (
-        (None, None),
         ('Silver', 'Silver'),
         ('Gold', 'Gold'),
+        ('Platinum', 'Platinum'),
     )
     label = models.CharField(max_length=255,choices=label_choices,default=None,)
 
