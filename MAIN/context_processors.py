@@ -11,7 +11,7 @@ def customContextProcessor(request):
                     ("News","/news/"),
                     ("Evènements", "/events"),
                     ("CHU", "/regions/"),
-                    ("Comité","/"),
+                    # ("Comité","/"),
                     ("Remplacements & RCP","/"),
                     ("Partenaires","/")],
         "loginForm": LoginForm()

@@ -11,16 +11,11 @@ $(window).load(function(){
     if($(window).width()>991){
         // $('.navCat').css('font-size',26);
         // NavCat();
-        Liner();
     }
 });
 
 $(window).resize(function(){
-    if($(window).width()>991){
-        // $('.navCat').css('font-size',14);
-        // NavCat();
-        Liner();
-    }
+
 });
 
 function FooterPush(){
@@ -64,16 +59,6 @@ function NavCat(){
     }else{
         $("#all_navCat").css('opacity',1);
     }
-}
-
-
-function Liner(){
-    $('.level_title').each(function(){
-        h2 = $(this).children('h2');
-        liner = $(this).children('.liner');
-        liner.width($(this).width() - h2.outerWidth() - 28);
-        // console.log(h2.width());
-    });
 }
 
 
