@@ -132,7 +132,7 @@
 </div>
 
 <div class='level' id='Associates'>
-    <div class='container' id='folder_associates'>
+    <div class='container'>
         <div class='row'>
             <div class='col-md-12 level_title'>
                 <h2>
@@ -140,6 +140,8 @@
                 </h2>
                 <div class='liner'></div>
             </div>
+        </div>
+        <div id='associate_layer' class='row'>
             {% for element in Associates %}
                 <div class='col-md-4 col-sm-4 col-xs-12'>
                     <div class='row associate'>
@@ -173,8 +175,9 @@
                     </div>
                 </div>
             {% endfor %}
+            </div>
             <div class='col-md-12 text-center' style='margin-top:50px;'>
-                <btn class='btn btn-large btn-default'>
+                <btn id='cat_associates' class='btn btn-large btn-default'>
                     Voir Plus 
                 </btn>
             </div>

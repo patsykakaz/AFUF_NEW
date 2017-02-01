@@ -14,7 +14,7 @@ def processor_home(request, page):
         E.inlines = EventDocumentation.objects.filter(master=E)
     Associates = Associate.objects.all().order_by('-rank')
     RIAs = RIA.objects.exclude(choix_RIA='Assurance professionnelle')
-    sponsor_all = Sponsor.objects.all()
+    sponsor_all = Sponsor.objects.all().order_by('?')
     i = 1
     sponsor_list = []
     chunk = []

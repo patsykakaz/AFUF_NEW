@@ -126,7 +126,7 @@ class Associate(Page, RichText):
 
 class Sponsor(Page, RichText):
     logo = FileField(verbose_name=_("illustration"),
-        upload_to=upload_to("MAIN.Event.logo_sponsor", "Event"),
+        upload_to=upload_to("MAIN.Event.logo_sponsor", "Sponsor"),
         format="Image", max_length=255, null=True, blank=True)
     website = models.URLField(null=True, blank=True)
     label_choices = (

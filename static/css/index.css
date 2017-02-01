@@ -99,7 +99,7 @@ img{
     display: inline-block;
     margin: 0;
     padding: 10px 20px;
-    background-color: rgba(255,255,255,.5);
+    background-color: rgba(255,255,255,.6);
     border-radius: 4px;
     -moz-transition: all 0.25s ease-in-out;
     -webkit-transition: all 0.25s ease-in-out;
@@ -108,6 +108,13 @@ img{
 }
 
 #Associates{
+}
+#associate_layer{
+    overflow: hidden;
+    -moz-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 .associate{
     /*background-color: rgb(240,240,240);*/
@@ -134,12 +141,14 @@ img{
 #sponsors_layer{
     width: 2000px;
     background-color: red;
+    vertical-align: top
     /*border-top: 1px solid rgba(0,0,0,.2);*/
 }
 .sponsor{
     display: inline-block;
     margin: 17px 20px 20px 3px;
-    box-shadow: 1px 1px 1px 1px grey;
+    overflow: hidden;
+    vertical-align: top;
     -moz-transition: all .5s ease-out;
     -webkit-transition: all .5s ease-out;
     -o-transition: all .5s ease-out;
@@ -149,6 +158,7 @@ img{
 }
 .sponsor:hover{
     /*opacity: .9;*/
+    /*box-shadow: 1px 1px 1px 1px grey;*/
     -webkit-transition-delay: .66s;
     -moz-transition-delay: .66s;
     -o-transition-delay: .66s;
