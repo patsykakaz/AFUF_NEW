@@ -49,6 +49,22 @@ def processor_event(request, page):
     print page
     return locals()
 
+
+@processor_for('regions')
+def processor_event(request, page):
+    try:
+        illustration = HomeCaption.objects.get(lien__contains="regions")
+        # print "illustration = %s" %illustration
+    except:
+        pass
+    all_CHU = []
+    all_region = []
+    for region in CHU.region_choices:
+        x = [region, CHU.objects.filter(region=region[0])]
+        all_CHU.append(x)
+        all_region.append(region[0])
+    return locals()
+
 @processor_for('ria')
 def processor_event(request, page):
     try: 

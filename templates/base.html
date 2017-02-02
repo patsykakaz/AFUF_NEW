@@ -70,17 +70,21 @@
             <ul class="nav navbar-nav navbar-left">
                 {% if not request.user.profile %}
                 <li class='blue'>
-                    <a href='/user/inscription/' style='background:rgb(234,97,114); color:white;'>Rejoignez-nous</a>
+                    <a href='/user/inscription/' {% if request.path == "/" %}
+                        style='background:rgb(234,97,114); color:white;'
+                    {% else %}
+                        style='font-weight:bold; color:rgb(234,97,114);'
+                    {% endif %}
+                    >Rejoignez-nous</a>
                 </li>
                 {% elif not request.user.profile.choix_adhesion %}
                 <li class='blue'>
                     <a href='/user/payment_choice/'>Finir votre inscription</a>
                 </li>
                 {% endif %}
-                {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
-                {# <li> #}
-                    {# <a href='/'>Some other page</a> #}
-                {# </li> #}
+                {% block navbar_dropdown_menu %}
+                    {% page_menu "pages/menus/dropdown.html" %}
+                {% endblock%}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
