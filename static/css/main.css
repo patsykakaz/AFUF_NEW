@@ -6,7 +6,7 @@ body{
     font-weight: lighter;
     font-size: 15px;
     line-height: 20px;
-    letter-spacing: 1.6px;
+    letter-spacing: 2px;
 }
 
 .navbar,h1,h2,h3,.title{
@@ -75,7 +75,6 @@ h1>a:hover, h2>a:hover, h3>a:hover, h4>a:hover{
     text-align: center;
     /*font-family: 'Quicksand', sans-serif;*/
     font-weight: lighter;
-    /*letter-spacing: 4px;*/
     /*border: 1px solid transparent;*/
     -moz-transition: all 0.1s ease-in-out;
     -webkit-transition: all 0.1s ease-in-out;
@@ -87,7 +86,7 @@ h1>a:hover, h2>a:hover, h3>a:hover, h4>a:hover{
 }
 .navCat a{
     color: rgb(234,97,114);
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 }.navCat:hover a{
     color: white;
 }
@@ -127,6 +126,7 @@ footer .rightSpace a .fa{
 @media screen and (max-width: 991px){
     body{
         font-size: 13px;
+        letter-spacing: 1px;
     }
     h2{
         font-size: 24px;
@@ -134,9 +134,18 @@ footer .rightSpace a .fa{
     h3{
         font-size: 20px;
     }
+    #logo{
+        margin: .75% 0 3.5% 0;
+        max-height: 100px;
+    }
+    #logo img{
+        max-height: 100px;
+    }
     .navCat{
-        padding: 5px 10px 6px 10px;
+        padding: 7px 13px 7px 13px;
         font-size: 14px;
+    }.navCat a{
+        letter-spacing: 3px;
     }
     footer .rightSpace{
         text-align: center;
@@ -153,6 +162,7 @@ footer .rightSpace a .fa{
 @media screen and (max-width: 768px){
     body{
         font-size: 12px;
+        letter-spacing: .9px;
     }
     h2{
         font-size: 21px;
@@ -166,9 +176,18 @@ footer .rightSpace a .fa{
     .mobile{
         display: inline-block;
     }
+    #logo{
+        margin: .75% 0 3.5% 0;
+        max-height: 80px;
+    }
+    #logo img{
+        max-height: 80px;
+    }
     .navCat{
-        padding: 4px 8px 5px 8px;
+        padding: 5px 10px 5px 10px;
         font-size: 13px;
+    }.navCat a{
+        letter-spacing: 2px;
     }
 }
 

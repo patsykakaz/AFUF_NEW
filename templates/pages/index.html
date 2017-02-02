@@ -63,7 +63,7 @@
                 <div class='text-justify'>
                     <h3>
                         <a href='{{ element.get_absolute_url }}'>
-                            {{ element.title }}
+                            {{ element.title|title }}
                         </a>
                     </h3>
                     {{ element.description_from_content|safe }}
