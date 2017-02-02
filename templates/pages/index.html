@@ -86,10 +86,12 @@
             <div class='event_slot col-md-3 col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-right'>
                 <div class='row'>
                     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-3 event_info'>
-                        <i class='fa fa-calendar text-info'></i> {{ element.date_event }}
+                        {{ element.date_event }}
+                        <i class='fa fa-calendar text-info'></i>
                     </div>
                     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-3 event_info'>
-                        <i class='fa fa-clock-o text-info'></i> {{ element.time_event }}
+                        {{ element.time_event }}
+                        <i class='fa fa-clock-o text-info'></i>
                     </div>
                     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-6 event_info icon_slot'>
                         {% if element.contact %}

@@ -108,14 +108,18 @@
     </div>
     <div class="container">
         <div id='logo' class='text-center'>
+            <a href='/'>
             <img src='{% static "img/afuf.jpg" %}' alt='logo AFUF' />
+            </a>
         </div>
     </div>
     <div id='all_navCat' class='text-center'>
         {% for element in navCats %}
-        <div class='navCat {% if element.1 != "/"  and element.1 in request.path %}On{% endif %}'>
-            <a href='{{ element.1 }}'>{{ element.0 }}</a>
-        </div>
+            <a class='navCat {% if element.1 != "/"  and element.1 in request.path %}On{% endif %}' href='{{ element.1 }}'>
+                {# <div class='navCat {% if element.1 != "/"  and element.1 in request.path %}On{% endif %}'> #}
+                    {{ element.0 }}
+                {# </div> #}
+            </a>
         {% endfor %}
     </div>
 </div>

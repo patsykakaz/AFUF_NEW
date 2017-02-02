@@ -1,11 +1,32 @@
 {% extends "pages/page.html" %}
+{% load pages_tags mezzanine_tags staticfiles blog_tags keyword_tags %}
 
-{% load mezzanine_tags %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/index.css" %}">
+<style type="text/css">
+    h2{
+        margin: 60px 0 40px 0;
+        color: rgb(234,97,114);
+    }
+    @media screen and (max-width: 991px){
+        h2{
+            margin: 30px 0 20px 0;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block main %}{{ block.super }}
 
-{% editable page.richtextpage.content %}
-{{ page.richtextpage.content|richtext_filters|safe }}
-{% endeditable %}
+    <div class='container'>
+    <div class='row'>
+        <h2 class='text-center'>{{ page.title|upper }}</h2>
+        <div class='col-md-12 col-sm-12'>
+            {% editable page.richtextpage.content %}
+            {{ page.richtextpage.content|richtext_filters|safe }}
+            {% endeditable %}
+        </div>
+    </div>
+    </div>
 
 {% endblock %}

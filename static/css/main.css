@@ -84,18 +84,15 @@ h1>a:hover, h2>a:hover, h3>a:hover, h4>a:hover{
     background-color: rgb(234,97,114);
     color: #FFFFFF;
 }
-.navCat a{
+a.navCat{
     color: rgb(234,97,114);
     letter-spacing: 4px;
-}.navCat:hover a{
+}a.navCat:hover{
     color: white;
 }
-.navCat.On a{
+a.navCat.On{
     /*color: #e42a25;*/
     font-weight: bold;
-}.navCat a{
-    /*color: #2d2f30;*/
-}.navCat a:hover, .navCat.On a{
 }
 
 .content{
@@ -146,10 +143,9 @@ footer .rightSpace a .fa{
     #logo img{
         max-height: 100px;
     }
-    .navCat{
+    a.navCat{
         padding: 7px 13px 7px 13px;
         font-size: 14px;
-    }.navCat a{
         letter-spacing: 3px;
     }
     footer .rightSpace{
@@ -193,10 +189,9 @@ footer .rightSpace a .fa{
     #logo img{
         max-height: 80px;
     }
-    .navCat{
+    a.navCat{
         padding: 5px 10px 5px 10px;
         font-size: 13px;
-    }.navCat a{
         letter-spacing: 2px;
     }
     footer img{
