@@ -91,12 +91,17 @@ h1>a:hover, h2>a:hover, h3>a:hover, h4>a:hover{
     color: white;
 }
 .navCat.On a{
-    color: #e42a25;
-    /*background-color: blue;*/
+    /*color: #e42a25;*/
+    font-weight: bold;
 }.navCat a{
     /*color: #2d2f30;*/
 }.navCat a:hover, .navCat.On a{
 }
+
+.content{
+    padding: 40px 0 100px 0;
+}
+
 footer{
     margin-top: 80px;
     background-color: rgb(234,97,114);
@@ -150,6 +155,11 @@ footer .rightSpace a .fa{
     footer .rightSpace{
         text-align: center;
     }
+    footer img{
+        bottom: 85px;
+        height: 140px;
+        padding: 20px;
+    }
 }
 @media screen and (min-width: 768px){
     .desktop{
@@ -165,7 +175,7 @@ footer .rightSpace a .fa{
         letter-spacing: .9px;
     }
     h2{
-        font-size: 21px;
+        font-size: 20px;
     }
     h3{
         font-size: 18px;
@@ -188,6 +198,11 @@ footer .rightSpace a .fa{
         font-size: 13px;
     }.navCat a{
         letter-spacing: 2px;
+    }
+    footer img{
+        bottom: 70px;
+        height: 120px;
+        padding: 15px;
     }
 }
 

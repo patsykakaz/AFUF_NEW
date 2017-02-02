@@ -68,9 +68,11 @@ function SizeSponsors(){
     // 25(px) = padding + min_margin between each $('.sponsor')
 
     $('.sponsor').each(function(){
-        // $(this).outerWidth(widthToApply);
-        $(this).outerWidth(widthToApply).css('max-height', widthToApply);
-        // $(this).children('img').css('margin-top',(widthToApply-$(this).children('img').height())/2);
+        // if($(window).width() > 768){
+            $(this).outerWidth(widthToApply).css('max-height', widthToApply);
+        // }else{
+            // $(this).outerWidth(widthToApply*2).css('max-height', widthToApply*2);
+        // }
     });
 }
 

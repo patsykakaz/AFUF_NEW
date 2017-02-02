@@ -1,0 +1,289 @@
+{% extends "pages/page.html" %}
+
+{% load pages_tags mezzanine_tags staticfiles blog_tags keyword_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/index.css" %}">
+<style type="text/css">
+    h2{
+        margin-bottom: 30px;
+        font-size: 30px;
+        color: rgb(234,97,114);
+        text-transform: uppercase;
+    }h2 .fa{
+        position: relative;
+        bottom: 4px;
+        font-size: 18px;
+    }h2 .badge{
+        position: relative;
+        bottom: 6px;
+        background-color: rgba(0,0,0,.3);
+        font-size: 15px;
+    }
+    h3{
+    }
+    .illustration img{
+        width: 100%;
+    }
+    #caption{
+        margin-top: 0;
+        padding: 50px 0;
+        background-color: rgba(0,0,0,.075);
+        text-align: justify;
+    }
+    .RIA_section{
+        margin-bottom: 40px;
+    }
+    @media screen and (max-width: 991px){
+        h2{
+            margin-bottom: 20px;
+            font-size: 24px;
+        }h2 .fa{
+            bottom: 2px;
+            font-size: 14px;
+        }h2 .badge{
+            bottom: 4px;
+            font-size: 12px;
+        }
+        .RIA_section{
+            margin-bottom: 25px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+
+<div class='illustration'>
+    {% if illustration %}
+        <img src='{{ MEDIA_URL }}{% thumbnail illustration.image 1200 300 %}' alt='illustration R.I.A.'>
+    {% endif %}
+</div>
+
+{% if HomeX.ria_caption %}
+<div id='caption'>
+    <div class='container'>
+    <div class='row'>
+    <div style='margin-bottom:10px;'><i>edito</i></div>
+    <div class='col-md-12'>
+        {{ HomeX.ria_caption|richtext_filters|safe }}
+    </div>
+    </div>
+    </div>
+</div>
+{% endif %}
+
+
+<div class='level content'>
+    <div class='container'>
+        <div id='R' class='row RIA_section'>
+            <div class='col-md-12 text-center'>
+                <h2>
+                    <i class='fa fa-long-arrow-right'></i>
+                    Remplacement
+                    <span class="badge">{{ Rs|length }}</span>
+                </h2>
+            </div>
+            {% if Rs %}
+                {% for element in Rs %}
+                    <div class='RIA col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1'>
+                        {# <div class='container'> #}
+                            <div class='row'>
+                                <div class='col-md-12 col-sm-12 col-xs-12'>
+                                    <h3>
+                                        {{ element.title }}
+                                    </h3>
+                                    <div class='text-justify'>
+                                        {{ element.description_from_content|safe }}
+                                    </div>
+                                </div>
+                                {% if element.mail %}
+                                    <div class='col-md-8 col-sm-8 col-xs-5 col-xs-offset-1 col-sm-offset-0'>
+                                        <h5>
+                                            <a href='mailto:{{ element.mail }}' target='blank' class='alert alert-info'>
+                                                <i class='fa fa-envelope'></i>
+                                                Contact <span class='desktop'>{{ element.choix_RIA }}</span>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                {% endif %}
+                                {% if element.target_link %}
+                                    <div {% if element.mail %} class='col-md-4 col-sm-4 col-xs-5 text-right' {% else %} class='col-md-12 col-sm-12 col-xs-12' {% endif %}>
+                                        <h5>
+                                            <a href='{{ element.target_link }}' target='blank'>
+                                                <i class='fa fa-link'></i>
+                                                Site Internet
+                                            </a>
+                                        </h5>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class='row'>
+                                {% if element.logo_sponsor %}
+                                    <div class='illustration col-md-3 col-sm-3 col-xs-3'>
+                                        <img src='{{ MEDIA_URL }}{% thumbnail element.logo_sponsor 200 0 %}' class='img-thumbnail' alt='logo partenaire'>
+                                    </div>
+                                {% endif %}
+                                {% if element.illustration %}
+                                    <div class='illustration text-center {% if element.logo_sponsor %}col-md-9 col-md-9 col-xs-9{% else %}col-md-12 col-sm-12-col-xs-12{% endif %}'>
+                                        <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 600 200 %}' class='img-thumbnail' alt='illustration {{ element.title }}'>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {# </div> #}
+                    </div>
+                {% endfor %}
+                <div class='liner col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2'></div>
+            {% else %}
+                <div class='text-center col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1'>
+                    <h3><i class='fa fa-warning'></i>
+                    Aucun remplacement disponible en ce moment.</h3>
+                </div>
+            {% endif %}
+        </div>
+
+
+
+        <div id='I' class='row RIA_section'>
+            <div class='col-md-12 text-center'>
+                <h2>
+                    <i class='fa fa-long-arrow-right'></i>
+                    Installation
+                    <span class="badge">{{ Is|length }}</span>
+                </h2>
+            </div>
+            {% if Is %}
+                {% for element in Is %}
+                    <div class='RIA col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1'>
+                        {# <div class='container'> #}
+                            <div class='row'>
+                                <div class='col-md-12 col-sm-12 col-xs-12'>
+                                    <h3>
+                                        {{ element.title }}
+                                    </h3>
+                                    <div class='text-justify'>
+                                        {{ element.description_from_content|safe }}
+                                    </div>
+                                </div>
+                                {% if element.mail %}
+                                    <div class='col-md-8 col-sm-8 col-xs-5 col-xs-offset-1 col-sm-offset-0'>
+                                        <h5>
+                                            <a href='mailto:{{ element.mail }}' target='blank' class='alert alert-info'>
+                                                <i class='fa fa-envelope'></i>
+                                                Contact <span class='desktop'>{{ element.choix_RIA }}</span>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                {% endif %}
+                                {% if element.target_link %}
+                                    <div {% if element.mail %} class='col-md-4 col-sm-4 col-xs-5 text-right' {% else %} class='col-md-12 col-sm-12 col-xs-12' {% endif %}>
+                                        <h5>
+                                            <a href='{{ element.target_link }}' target='blank'>
+                                                <i class='fa fa-link'></i>
+                                                Site Internet
+                                            </a>
+                                        </h5>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class='row'>
+                                {% if element.logo_sponsor %}
+                                    <div class='illustration col-md-3 col-sm-3 col-xs-3'>
+                                        <img src='{{ MEDIA_URL }}{% thumbnail element.logo_sponsor 200 0 %}' class='img-thumbnail' alt='logo partenaire'>
+                                    </div>
+                                {% endif %}
+                                {% if element.illustration %}
+                                    <div class='illustration text-center {% if element.logo_sponsor %}col-md-9 col-md-9 col-xs-9{% else %}col-md-12 col-sm-12-col-xs-12{% endif %}'>
+                                        <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 600 200 %}' class='img-thumbnail' alt='illustration {{ element.title }}'>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {# </div> #}
+                    </div>
+                {% endfor %}
+                <div class='liner col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2'></div>
+            {% else %}
+                <div class='text-center col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1'>
+                    <h3><i class='fa fa-warning'></i>
+                    Aucune installation disponible en ce moment.</h3>
+                </div>
+            {% endif %}
+        </div>
+
+
+        <div id='A' class='row RIA_section'>
+            <div class='col-md-12 text-center'>
+                <h2>
+                    <i class='fa fa-long-arrow-right'></i>
+                    Assurance professionnelle
+                    <span class="badge">{{ As|length }}</span>
+                </h2>
+            </div>
+            {% if As %}
+                {% for element in As %}
+                    <div class='RIA col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1'>
+                        {# <div class='container'> #}
+                            <div class='row'>
+                                <div class='col-md-12 col-sm-12 col-xs-12'>
+                                    <h3>
+                                        {{ element.title }}
+                                    </h3>
+                                    <div class='text-justify'>
+                                        {{ element.description_from_content|safe }}
+                                    </div>
+                                </div>
+                                {% if element.mail %}
+                                    <div class='col-md-8 col-sm-8 col-xs-5 col-xs-offset-1 col-sm-offset-0'>
+                                        <h5>
+                                            <a href='mailto:{{ element.mail }}' target='blank' class='alert alert-info'>
+                                                <i class='fa fa-envelope'></i>
+                                                Contact <span class='desktop'>{{ element.choix_RIA }}</span>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                {% endif %}
+                                {% if element.target_link %}
+                                    <div {% if element.mail %} class='col-md-4 col-sm-4 col-xs-5 text-right' {% else %} class='col-md-12 col-sm-12 col-xs-12' {% endif %}>
+                                        <h5>
+                                            <a href='{{ element.target_link }}' target='blank'>
+                                                <i class='fa fa-link'></i>
+                                                Site Internet
+                                            </a>
+                                        </h5>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class='row'>
+                                {% if element.logo_sponsor %}
+                                    <div class='illustration col-md-3 col-sm-3 col-xs-3'>
+                                        <img src='{{ MEDIA_URL }}{% thumbnail element.logo_sponsor 200 0 %}' class='img-thumbnail' alt='logo partenaire'>
+                                    </div>
+                                {% endif %}
+                                {% if element.illustration %}
+                                    <div class='illustration text-center {% if element.logo_sponsor %}col-md-9 col-md-9 col-xs-9{% else %}col-md-12 col-sm-12-col-xs-12{% endif %}'>
+                                        <img src='{{ MEDIA_URL }}{% thumbnail element.illustration 600 200 %}' class='img-thumbnail' alt='illustration {{ element.title }}'>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {# </div> #}
+                    </div>
+                {% endfor %}
+                <div class='liner col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2'></div>
+            {% else %}
+                <div class='text-center col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1'>
+                    <h3><i class='fa fa-warning'></i>
+                    Aucune Assurance professionnelle disponible en ce moment.</h3>
+                </div>
+            {% endif %}
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}

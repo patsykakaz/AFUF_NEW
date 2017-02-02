@@ -31,8 +31,33 @@ def processor_home(request, page):
 
     return locals()
 
+@processor_for('events')
+def processor_event(request, page):
+    try:
+        illustration = HomeCaption.objects.get(lien__contains="events")
+        # print "illustration = %s" %illustration
+    except:
+        pass
+    Events = Event.objects.all()
+    for E in Events:
+        E.inlines = EventDocumentation.objects.filter(master=E)
+    return locals()
+
 @processor_for(Event)
 def processor_event(request, page):
     page = Event.objects.get(pk=page.pk)
     print page
+    return locals()
+
+@processor_for('ria')
+def processor_event(request, page):
+    try: 
+        illustration = HomeCaption.objects.get(lien__contains="ria")
+        # print "illustration = %s" %illustration
+    except:
+        pass
+    Rs = RIA.objects.filter(choix_RIA="Remplacement")
+    Is = RIA.objects.filter(choix_RIA="Installation")
+    As = RIA.objects.filter(choix_RIA="Assurance professionnelle")
+    # RIAs = RIA.objects.all()
     return locals()

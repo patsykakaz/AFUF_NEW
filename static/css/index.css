@@ -20,8 +20,10 @@ img{
 .liner{
     /*width: 20%;*/
     display: inline-block;
-    height: 10px;
-    border-top: 1px solid rgb(234,97,114);
+    height: 7px;
+    border-top: 1px dashed rgba(0,0,0,.2);
+    /*border-bottom: 1px solid rgba(0,0,0,.17);*/
+    border-bottom: 1px dashed rgba(234,97,114,.4);
 }
 
 #Events{
@@ -29,20 +31,23 @@ img{
     padding-bottom: 0;
 }
 #Events h3{
-    margin-top: 0;
+    margin: 0 0 20px 0;
 }
 .event{
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 .event_slot{
+    margin-bottom: 20px;
     overflow: hidden;
     line-height: 20px;
 }.event_slot:first-child{
     margin-bottom: 30px;
 }
 .event_slot img{
-    max-width: 100%;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2px; /*for the border-bottom to appear*/
 }
 
 .event_info{
@@ -51,7 +56,8 @@ img{
     margin-top: 15px;
 }
 .DL{
-    margin: 10px 0;
+    display: inline-block;
+    margin: 10px 5px;
     font-family: 'Lato', sans-serif;
     /*font-weight: bolder;*/
 }
@@ -136,12 +142,18 @@ img{
 }
 
 
-#RIA{
+#RIAS{
     margin-top: 0;
     background-color: #f9f9f9;
 }
-#RIA h3{
+#RIAS h3{
     margin: 20px 0;
+}
+.RIA{
+    margin-bottom: 30px;
+}
+.RIA .illustration{
+    margin-top: 20px;
 }
 
 
@@ -238,6 +250,21 @@ footer{
     }
     .level_title h2{
         margin: 15px 20px 30px 0;
+    }
+    .event_info{
+        margin-bottom: 10px;
+    }
+    .event_info.icon_slot{
+        margin-top: 0;
+    }
+    .event_slot{
+        text-align: center;
+    }
+    .event_slot img{
+        max-width: 250px;
+    }
+    .DL{
+        margin: 0 5px 10px 5px;
     }
     .associate{
         height: 280px;

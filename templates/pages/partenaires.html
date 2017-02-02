@@ -1,0 +1,29 @@
+{% extends "pages/page.html" %}
+
+{% load pages_tags mezzanine_tags staticfiles blog_tags keyword_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/index.css" %}">
+<style type="text/css">
+    .illustration img{
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+
+<div class='illustration'>
+    {% if illustration %}
+        <img src='{{ MEDIA_URL }}{% thumbnail illustration.image 1200 300 %}' alt='illustration partenaires'>
+    {% endif %}
+</div>
+
+
+<div class='level content'>
+    <div class='container'>
+    </div>
+</div>
+
+
+{% endblock %}

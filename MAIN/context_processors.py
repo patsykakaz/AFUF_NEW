@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from USERMGMT.forms import LoginForm
+from MAIN.models import HomeX
 
 
 def customContextProcessor(request):
@@ -9,10 +10,11 @@ def customContextProcessor(request):
     return {
         "navCats": [
                     ("News","/news/"),
-                    ("Evènements", "/events"),
+                    ("Evènements", "/events/"),
                     ("CHU", "/regions/"),
                     # ("Comité","/"),
-                    ("Remplacements & RCP","/"),
-                    ("Partenaires","/")],
-        "loginForm": LoginForm()
+                    ("Remplacements & RCP","/ria/"),
+                    ("Partenaires","/partenaires/")],
+        "loginForm": LoginForm(),
+        "HomeX": HomeX.objects.last()
     }
