@@ -170,7 +170,7 @@ def list_profiles(request):
     if request.user.is_staff:
         profiles = Profile.objects.all().order_by("choix_adhesion")
     else: 
-        raise Exception('Non staff user trying to access profiles List')
+        return HttpResponse("Page réservée aux administrateurs du site")
     return render(request, 'USERMGMT/list_profiles.html', locals())
 
 @login_required
@@ -204,5 +204,6 @@ def export_users_xls(request):
 
         wb.save(response)
     else: 
-        raise Exception('Non staff user trying to access profiles List')
+        return HttpResponse("Page réservée aux administrateurs du site")
     return response
+

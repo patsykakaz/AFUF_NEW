@@ -50,7 +50,7 @@ class Event(Page, RichText):
 
     def save(self, *args, **kwargs):
         try: 
-            parent = Page.objects.get(title="EVENTS")
+            parent = Page.objects.get(title="EVENEMENTS")
             self.parent = parent
         except:
             pass
@@ -112,13 +112,15 @@ class Associate(Page, RichText):
     linkedin = models.URLField(null=True, blank=True)
     twitter = models.URLField(null=True, blank=True)
 
+    # search_fields = ('title')
+
     class Meta:
         verbose_name = 'MEMBRE AFUF'
         verbose_name_plural = 'MEMBRES AFUF'
 
     def save(self, *args, **kwargs):
         try: 
-            parent = Page.objects.get(title="ASSOCIATES")
+            parent = Page.objects.get(title="ADMINISTRATION")
             self.parent = parent
         except:
             pass
@@ -142,7 +144,7 @@ class Sponsor(Page, RichText):
 
     def save(self, *args, **kwargs):
         try: 
-            parent = Page.objects.get(title="SPONSORS")
+            parent = Page.objects.get(title="PARTENAIRES")
             self.parent = parent
         except:
             pass

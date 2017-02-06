@@ -1,18 +1,59 @@
-{% extends "form_base.html" %}
-{% load i18n mezzanine_tags bootstrap3 %}
+{% extends "base.html" %}
+{% load staticfiles i18n mezzanine_tags bootstrap3 %}
 
-{% block sub_main %}
+{% block extra_css %}
+<style type="text/css">
+    h1{
+        margin-top: 25px;
+        margin-bottom: 50px;
+    }
+    h5{
+        /*font-family: 'Reem Kufi', sans-serif;*/
+        font-size: 16px;
+    }
+    a{
+        font-weight: bold;
+    }
+    b.red{
+        color: rgb(234,97,114);
+    }
+    #logo_header{
+        overflow: hidden;
+        margin-top: 100px;
+        text-align: center;
+    }#logo_header img{
+        max-height: 100px;
+    }
+    .disclaimer{
+        margin-top: 30px;
+    }
+    .formZone{
+        padding: 10px 20px;
+        border: 1px solid #E7E7E7;
+        background-color: #F8F8F8;
+        text-align: justify;
+    }
+    .formZone i.fa{
+        color: #428bca;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+    <div class='container'>
+    <div class='row'>
         <h1 class='text-center'>Formulaire d'adhésion à l'AFUF</h1>
         {% if validation %}
             {{ validation}}
-        {% else %} 
+        {% else %}
             {% if emailError %}
                 <div class="alert alert-danger text-center">
-                    L'adresse email <b>{{ emailError }}</b> existe déjà en base de données. Si vous avez perdu vos identifiant, merci de contacter l'Afuf. 
+                    L'adresse email <b>{{ emailError }}</b> existe déjà en base de données. Si vous avez perdu vos identifiant, merci de contacter l'Afuf.
                 </div>
             {% endif %}
             <div class='col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>
                 <div class='formZone'>
+                    <h3 style='margin-bottom:20px'  class='text-center'>Pensez à bien remplir tous les champs</h3>
                     <form action="" method="post" class="form" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% bootstrap_form form %}
@@ -26,9 +67,11 @@
                 </div>
             </div>
             <div class='col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 disclaimer text-justify'>
-                Les informations recueillies sont nécessaires pour votre adhésion. Elles font l'objet d'un traitement informatique et sont destinées au secrétariat de l'association. 
+                Les informations recueillies sont nécessaires pour votre adhésion. Elles font l'objet d'un traitement informatique et sont destinées au secrétariat de l'association.
                 En application des articles 39 et suivants de la loi du 6 janvier 1978 modifiée, vous bénéficiez d'un droit d'accès et de rectification aux informations qui vous concernent.
                 Si vous souhaitez exercer ce droit et obtenir communication des informations vous concernant, veuillez vous adresser à l’AFUF à l’adresse email : <a href='mailto:zbhatoo@afu.fr'>zbhatoo@afu.fr</a>
             </div>
         {% endif %}
+    </div>
+    </div>
 {% endblock %}

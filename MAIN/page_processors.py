@@ -1,9 +1,10 @@
 #-*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from MAIN.models import *
+from django.http import HttpResponse, HttpResponseRedirect
 from mezzanine.pages.page_processors import processor_for
 # from mezzanine.core.request import current_request
+from MAIN.models import *
 
 @processor_for('/')
 def processor_home(request, page):
@@ -65,7 +66,23 @@ def processor_event(request, page):
         all_region.append(region[0])
     return locals()
 
+@processor_for(Associate)
+def processor_event(request, page):
+    return HttpResponseRedirect("/#Associates")
+
 @processor_for('ria')
+def processor_event(request, page):
+    try: 
+        illustration = HomeCaption.objects.get(lien__contains="ria")
+        # print "illustration = %s" %illustration
+    except:
+        pass
+    Rs = RIA.objects.filter(choix_RIA="Remplacement")
+    Is = RIA.objects.filter(choix_RIA="Installation")
+    As = RIA.objects.filter(choix_RIA="Assurance professionnelle")
+    # RIAs = RIA.objects.all()
+    return locals()
+@processor_for(RIA)
 def processor_event(request, page):
     try: 
         illustration = HomeCaption.objects.get(lien__contains="ria")
@@ -86,6 +103,9 @@ def processor_event(request, page):
     except:
         pass
     PlatinumSponsors = Sponsor.objects.filter(label='Platinum')
-    goldSponsors = Sponsor.objects.filter(label='Gold')
+    GoldSponsors = Sponsor.objects.filter(label='Gold')
     SilverSponsors = Sponsor.objects.filter(label='Silver')
     return locals()
+@processor_for(Sponsor)
+def processor_event(request, page):
+    return HttpResponseRedirect("/#Sponsors")

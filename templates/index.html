@@ -79,6 +79,12 @@
         color: #428bca;
         text-decoration: none;
     }
+
+    #adhesion{  
+    padding: 6px 10px;
+    background-color: rgb(234,97,114);
+    color: white;
+    }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
@@ -92,10 +98,16 @@ $(window).resize(function(){
 </script>
 </head>
 <body>
-<div id='main'>Le nouveau site de l'AFUF est en construction !</div>
+<div id='main'>
+    Le nouveau site de l'AFUF est en construction !
+    <div class='pull-right'><a id='adhesion' href="/user/inscription/">Adhésion</a></div>
+</div>
 <div id='logo' class='text-center'>
     <img src='{% static "img/afuf.jpg" %}' alt='logo AFUF'>
-    <h2><a href="/user/inscription/">Adhésion</a></h2>
+    <h2><a href="/lassociation">L'Association</a></h2>
+</div>
+<div class='hide'>
+    <h2 class='text-center'><a href="/user/inscription/">Adhésion</a></h2>
 </div>
 
 </body>

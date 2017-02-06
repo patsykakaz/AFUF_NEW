@@ -31,6 +31,7 @@
             <th>Prénom</th>
             <th>Email</th>
             <th>Téléphone</th>
+            <th>Adresse</th>
             <th>Date de naissance</th>
             <th>Année ECN</th>
             <th>Semestre commencé</th>
@@ -58,6 +59,7 @@
             <td>{{ element.prenom|title }}</td>
             <td><a href="mailto:{{ element.email }}">{{ element.email }}</a></td>
             <td>{{ element.tel }}</td>
+            <td>{{ element.adresse }}</td>
             <td>{{ element.date_naissance }}</td>
             <td>{{ element.annee_ECN }}</td>
             <td>{{ element.semestre }}</td>
@@ -71,7 +73,7 @@
             <td>{{ element.diplome_autre }}</td>
             <td>{{ element.statut_actuel }}</td>
             <td>{{ element.statut_autre }}</td>
-            <td>{{ element.justificatif_scolarite }}</td>
+            <td><a href="/static/media/{{ element.justificatif_scolarite }}" target="blank">{{ element.justificatif_scolarite }}</a></td>
         </tr>
         {% endfor %}
     </tbody>
