@@ -77,3 +77,13 @@ def processor_event(request, page):
     As = RIA.objects.filter(choix_RIA="Assurance professionnelle")
     # RIAs = RIA.objects.all()
     return locals()
+
+@processor_for('partenaires')
+def processor_event(request, page):
+    try: 
+        illustration = HomeCaption.objects.get(lien__contains="partenaires")
+        # print "illustration = %s" %illustration
+    except:
+        pass
+    sponsors = Sponsor.objects.all().order_by('label')
+    return locals()

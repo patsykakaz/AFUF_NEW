@@ -14,7 +14,7 @@ def customContextProcessor(request):
                     ("CHU", "/regions/"),
                     # ("Comité","/"),
                     ("Remplacements & RCP","/ria/"),
-                    ("Partenaires","/partenaires/")],
+                    ("Partenaires","/#Sponsors")],
         "loginForm": LoginForm(),
         "HomeX": HomeX.objects.last()
     }

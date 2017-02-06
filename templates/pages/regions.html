@@ -21,6 +21,11 @@
         border: 1px solid rgba(0,0,0,.25);
         margin: 10px 10px 10px 0;
     }
+    .half.liner{
+        margin: 15px 0 20px 0;
+        width:100%;
+        border-top: none;
+    }
 </style>
 {% endblock %}
 
@@ -104,6 +109,9 @@
                 {% endif %}
             </div>
             {% endfor %}
+            <div class='col-md-12 col-xs-12'>
+                <div class='half liner'></div>
+            </div>
         {% endfor %}
     </div>
 </div>
@@ -112,8 +120,8 @@
     <iframe id="map" src="https://www.google.com/maps/d/u/1/embed?mid=1GhkLFV-rQ3NH7SY0Im_bQdTw1Yk" width="100%" height="550" frameborder="0" style="border:0; margin-top: -100px;" scrolling="no"></iframe>
     <div id="GMAP_overlay">
         <a href='javascript:void(0)'>
-        <div id='map_title'>
-            <h3 class='text-center'>Cliquez pour activer</h3>
+        <div id='map_title' class='text-center'>
+            <h3>Cliquez pour activer</h3>
         </div>
         </a>
     </div>
