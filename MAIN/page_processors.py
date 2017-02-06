@@ -85,5 +85,7 @@ def processor_event(request, page):
         # print "illustration = %s" %illustration
     except:
         pass
-    sponsors = Sponsor.objects.all().order_by('label')
+    PlatinumSponsors = Sponsor.objects.filter(label='Platinum')
+    goldSponsors = Sponsor.objects.filter(label='Gold')
+    SilverSponsors = Sponsor.objects.filter(label='Silver')
     return locals()
