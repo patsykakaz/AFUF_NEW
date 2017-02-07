@@ -33,13 +33,17 @@ def connect(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
-            try : 
+            try:
+                existing_user = User.objects.get(email=username)
+                # print "existing user = " + existing_user.pk, existing_user.username
+                user = authenticate(username=existing_user.username, password=password)
+                # print "user = " + user.pk, user.username
                 login(request, user)
             except:
                 print "error while retrieving user from email"
                 loginError = True
         else:
+            print "form is not valid"
             loginError = True
     else:
         form = LoginForm()
