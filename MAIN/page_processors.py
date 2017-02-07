@@ -20,7 +20,7 @@ def processor_home(request, page):
     sponsor_list = []
     chunk = []
     for element in sponsor_all:
-        if i%6 == 0 or i == len(sponsor_all): 
+        if i%5 == 0 or i == len(sponsor_all): 
             chunk.append(element)
             sponsor_list.append(chunk)
             chunk = []

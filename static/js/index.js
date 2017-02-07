@@ -64,8 +64,16 @@ function ToggleAssociates(heightToApply){
 }
 
 function SizeSponsors(){
-    widthToApply = ($('#carousel2').width()-25*$('#carousel2 .item').first().children('#carousel2 .sponsor').length )/$('#carousel2 .item').first().children('.sponsor').length;
-    // 25(px) = padding + min_margin between each $('.sponsor')
+    if($(window).width() > 991){
+        widthToApply = ($('#carousel2').width()-25*$('#carousel2 .item').first().children('#carousel2 .sponsor').length )/$('#carousel2 .item').first().children('.sponsor').length;
+        // 25(px) = padding + min_margin between each $('.sponsor')
+    }else if($(window).width() > 768){
+        widthToApply = ($('#carousel2').width()-15*$('#carousel2 .item').first().children('#carousel2 .sponsor').length )/$('#carousel2 .item').first().children('.sponsor').length;
+        // 15(px) = padding + min_margin between each $('.sponsor')
+    }else{
+        widthToApply = ($('#carousel2').width()-10*$('#carousel2 .item').first().children('#carousel2 .sponsor').length )/$('#carousel2 .item').first().children('.sponsor').length;
+        // 10(px) = padding + min_margin between each $('.sponsor')
+    }
 
     $('.sponsor').each(function(){
         // if($(window).width() > 768){

@@ -87,11 +87,11 @@
                 {% endblock%}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="javascript:void(0)" title='recherche'>
-                        <i class='fa fa-search'></i>
-                    </a>
-                </li>
+                {# <li> #}
+                    {# <a href="javascript:void(0)" title='recherche'> #}
+                        {# <i class='fa fa-search'></i> #}
+                    {# </a> #}
+                {# </li> #}
                 {% if request.user.username %}
                 <li id='login_CAT'>
                     <a href="/user/logout/" style='color:rgb(234,97,114);' title='logout'>

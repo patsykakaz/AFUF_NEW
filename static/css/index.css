@@ -90,9 +90,9 @@ img{
 #GMAP_overlay{
     position:relative;
     width: 100%; /* your iframe width */
-    height:480px; /* your iframe height */
+    height: 480px; /* your iframe height */
     /*top:480px;  your iframe height */
-    margin-top:-480px;  /* your iframe height */
+    margin-top: -525px;  /* your iframe height */
     background-color: rgba(255,255,255,.37);
 }
 #GMAP_overlay a,
@@ -268,7 +268,7 @@ footer{
         margin: 0 5px 10px 5px;
     }
     .associate{
-        height: 280px;
+        height: 250px;
         text-align: center;
         font-size: 13px;
     }
@@ -278,6 +278,9 @@ footer{
     }
     .associate img{
         max-height: 150px;
+    }
+    .sponsor{
+        margin: 12px 7px 8px 3px;
     }
 }
 @media screen and (max-width: 768px){
@@ -289,7 +292,7 @@ footer{
         margin: 10px 20px 15px 0;
     }
     .associate{
-        height: 300px;
+        height: 275px;
         text-align: center;
         font-size: 12px;
     }
@@ -299,5 +302,8 @@ footer{
     }
     .associate img{
         max-height: 120px;
+    }
+    .sponsor{
+        margin: 10px 5px 7px 2px;
     }
 }

@@ -57,63 +57,73 @@
         <div class='liner'></div>
     </div>
     </div>
-    {% for element in Events %}
-        <div class='event row'>
-            <h3 class='text-center'>
-                <a href='{{ element.get_absolute_url }}'>
-                    {{ element.title|title }}
-                </a>
-            </h3>
-            <div class='event_slot col-md-3 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2'>
-                <a href='{{ element.get_absolute_url }}'>
-                    <img class='img-thumbnail' src='{{ MEDIA_URL }}{% thumbnail element.illustration 0 400 %}' alt='illustration {{ element.title }}'>
-                </a>
-            </div>
-
-            <div class='event_slot col-md-6 col-sm-8 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
-                <div class='text-justify'>
-                    {{ element.description_from_content|safe }}
-                </div>
-                {% if element.link_event %}
-                <div class='text-center'>
-                    <a href="{{ element.link_event }}" target='blank'>
-                        <i class='fa fa-arrow-circle-o-right'></i> Lien vers le site de l'évènement
+    {% if Events %}
+        {% for element in Events %}
+            <div class='event row'>
+                <h3 class='text-center'>
+                    <a href='{{ element.get_absolute_url }}'>
+                        {{ element.title|title }}
+                    </a>
+                </h3>
+                <div class='event_slot col-md-3 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2'>
+                    <a href='{{ element.get_absolute_url }}'>
+                        <img class='img-thumbnail' src='{{ MEDIA_URL }}{% thumbnail element.illustration 0 400 %}' alt='illustration {{ element.title }}'>
                     </a>
                 </div>
-                {% endif %}
-            </div>
 
-            <div class='event_slot col-md-3 col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-right'>
-                <div class='row'>
-                    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-3 event_info'>
-                        {{ element.date_event }}
-                        <i class='fa fa-calendar text-info'></i>
+                <div class='event_slot col-md-6 col-sm-8 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
+                    <div class='text-justify'>
+                        {{ element.description_from_content|safe }}
                     </div>
-                    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-3 event_info'>
-                        {{ element.time_event }}
-                        <i class='fa fa-clock-o text-info'></i>
+                    {% if element.link_event %}
+                    <div class='text-center'>
+                        <a href="{{ element.link_event }}" target='blank'>
+                            <i class='fa fa-arrow-circle-o-right'></i> Lien vers le site de l'évènement
+                        </a>
                     </div>
-                    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-6 event_info icon_slot'>
-                        {% if element.contact %}
-                            <div class='DL'>
-                                <a {% if request.user.username %}href='mailto:{{ element.contact }}' title='contact' {% else %} class='disabled' title='Connectez-vous pour envoyer un mail au contact' {% endif %}>
-                                contact
-                                <i class='fa fa-lg fa-envelope'></i></a>
-                            </div>
-                        {% endif %}
-                        {% for inline in element.inlines %}
-                            <div class='DL'>
-                                <a {% if request.user.username %}href="{{ inline.file.url }}"{% else %} class='disabled' title='Connectez-vous pour télécharger le document' {% endif %} target="blank">
-                                    <span>{{ inline.nature }}</span>
-                                    <i class='fa fa-lg fa-download'></i>
-                                </a>
-                            </div>
-                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class='event_slot col-md-3 col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0 text-right'>
+                    <div class='row'>
+                        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-3 event_info'>
+                            {{ element.date_event }}
+                            <i class='fa fa-calendar text-info'></i>
+                        </div>
+                        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-3 event_info'>
+                            {{ element.time_event }}
+                            <i class='fa fa-clock-o text-info'></i>
+                        </div>
+                        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-6 event_info icon_slot'>
+                            {% if element.contact %}
+                                <div class='DL'>
+                                    <a {% if request.user.username %}href='mailto:{{ element.contact }}' title='contact' {% else %} class='disabled' title='Connectez-vous pour envoyer un mail au contact' {% endif %}>
+                                    contact
+                                    <i class='fa fa-lg fa-envelope'></i></a>
+                                </div>
+                            {% endif %}
+                            {% for inline in element.inlines %}
+                                <div class='DL'>
+                                    <a {% if request.user.username %}href="{{ inline.file.url }}"{% else %} class='disabled' title='Connectez-vous pour télécharger le document' {% endif %} target="blank">
+                                        <span>{{ inline.nature }}</span>
+                                        <i class='fa fa-lg fa-download'></i>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class='col-md-6 col-sm-6 col-xs-12'>
+            <div class='row'>
+                <div class='col-md-12 text-center'>
+                    <h3>Aucun évènement en ce moment.</h3>
                 </div>
             </div>
         </div>
-    {% endfor %}
+    {% endif %}
     </div>
 </div>
 
@@ -130,7 +140,7 @@
     </div>
     </div>
     <div id='CHU_map_layer'>
-        <iframe id="map" src="https://www.google.com/maps/d/u/1/embed?mid=1GhkLFV-rQ3NH7SY0Im_bQdTw1Yk" width="100%" height="550" frameborder="0" style="border:0; margin-top: -100px;" scrolling="no"></iframe>
+        <iframe id="map" src="https://www.google.com/maps/d/embed?mid=1mjCP-s_Qbs-htbRHFYDIbfbqhpY"width="100%" height="550" frameborder="0" style="border:0; margin-top: -50px;" scrolling="no"></iframe>
         <div id="GMAP_overlay">
             <a href='javascript:void(0)'>
             <div id='map_title'>
@@ -170,7 +180,11 @@
                                 {{ element.statut }}, {{ element.ville_exercice }}
                             </div>
                             <div class='SoMe'>
+                                    {% if request.user.username %}
                                     <a href='mailto:{{ element.email }}'><i class='fa fa-envelope-o'></i></a>
+                                    {% else %}
+                                    <a href='javascript:void(0);' class='disabled' title='Connectez-vous pour contacter {{ element.prenom }} {{ element.nom }}'><i class='fa fa-envelope-o'></i></a>
+                                    {% endif %}
                                 {% if element.facebook %}
                                     <a href='{{ element.facebook }}' target='blank'><i class='fa fa-facebook'></i></a>
                                 {% endif %}
@@ -276,7 +290,9 @@
     {% else %}
         <div class='col-md-6 col-sm-6 col-xs-12'>
             <div class='row'>
+                <div class='col-md-12 text-center'>
                 <h3>Aucun Remplacement ou installation en ce moment.</h3>
+                </div>
             </div>
         </div>
     {% endif %}
