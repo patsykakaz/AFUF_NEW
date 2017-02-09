@@ -11,7 +11,8 @@ img{
     margin: 60px 0 30px 0;
     padding: 60px 0;
 }
-.level_title h2{
+.level_title h2, .level_title h2 a, 
+.level_title h2:hover, .level_title h2:visited{
     display: inline-block;
     margin: 20px 20px 50px 0;
     text-align: left;
