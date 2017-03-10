@@ -69,7 +69,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
                 {% if not request.user.profile %}
-                <li class='blue'>
+                <li class='hide blue'>
                     <a href='/user/inscription/' {% if request.path == "/" %}
                         style='background:rgb(234,97,114); color:white;'
                     {% else %}
@@ -78,7 +78,7 @@
                     >Rejoignez-nous</a>
                 </li>
                 {% elif not request.user.profile.choix_adhesion %}
-                <li class='blue'>
+                <li class='hide blue'>
                     <a href='/user/payment_choice/'>Finir votre inscription</a>
                 </li>
                 {% endif %}

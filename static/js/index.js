@@ -41,7 +41,7 @@ function Liner(){
     $('.level_title').each(function(){
         h2 = $(this).children('h2');
         liner = $(this).children('.liner');
-        liner.width($(this).width() - h2.outerWidth() - 28);
+        liner.width($(this).width() - h2.outerWidth() - 30);
         // console.log(h2.width());
     });
 }

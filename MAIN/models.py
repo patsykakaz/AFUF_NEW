@@ -34,12 +34,12 @@ class Event(Page, RichText):
     illustration = FileField(verbose_name=_("illustration"),
         upload_to=upload_to("MAIN.Event.illustration", "Event"),
         format="Image", max_length=255, null=True, blank=False)
-    sponsor_event = models.ForeignKey("Sponsor", blank=True)
-    location = models.CharField(max_length=255, verbose_name='Lieu de l\'évènement')
-    pinpoint = models.URLField(verbose_name='Lien externe pour localiser l\'évènement (google maps...)', blank=True)
-    link_event = models.URLField(verbose_name='Lien vers le site évènement', blank=True)
-    date_event = models.DateField(verbose_name='Date évènement', blank=False)
-    time_event = models.CharField(max_length=255, verbose_name='Horaires évènement', blank=False)
+    sponsor_event = models.ForeignKey("Sponsor", null=True, blank=True)
+    location = models.CharField(max_length=255, verbose_name='Lieu de l\'évènement', null=True, blank=True)
+    pinpoint = models.URLField(verbose_name='Lien externe pour localiser l\'évènement (google maps...)', null=True, blank=True)
+    link_event = models.URLField(verbose_name='Lien vers le site évènement', null=True, blank=True)
+    date_event = models.DateField(verbose_name='Date évènement', null=True, blank=False)
+    time_event = models.CharField(max_length=255, verbose_name='Horaires évènement', null=True, blank=False)
     # subscription_limit = models.CharField(max_length=255, verbose_name='Date limite d\'inscription', blank=True)
     contact =  models.EmailField(max_length=255, verbose_name='contact évènement')
     # documentation = models.FileField(verbose_name='Doc évènement',upload_to='uploads/events/', blank=True, help_text='Documentation disponible au téléchargement pour les utilisateurs loggés')
@@ -65,7 +65,6 @@ class EventDocumentation(models.Model):
 
 class CHU(Page):
     region_choices = (
-        ('Ile de France','Ile de France'),
         ('Est', 'Est'),
         ('Nord', 'Nord'),
         ('Ouest', 'Ouest'),
@@ -73,6 +72,7 @@ class CHU(Page):
         ('Sud', 'Sud'),
         ('Sud-Ouest', 'Sud-Ouest'),
         ('DOM-TOM', 'DOM-TOM'),
+        ('Ile de France','Ile de France'),
     )
     region = models.CharField(max_length=255,choices=region_choices,null=False,blank=False,verbose_name='Région du CHU')
     region_description = RichTextField(verbose_name='Description de la région')
