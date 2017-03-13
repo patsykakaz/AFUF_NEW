@@ -60,6 +60,7 @@ class EventDocumentation(models.Model):
     master = models.ForeignKey("Event")
     file =  models.FileField(verbose_name='Doc évènement',upload_to='uploads/events/', blank=True, help_text='Documentation disponible au téléchargement pour les utilisateurs loggés')
     nature = models.CharField(max_length=255, verbose_name='Nature document')
+    public_toggle = models.BooleanField(default=False, verbose_name='Document public', help_text='rendre le document public pour les internautes non loggés ?')
     class Meta:
         verbose_name = 'Documentation'
 

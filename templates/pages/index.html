@@ -106,7 +106,7 @@
                             {% endif %}
                             {% for inline in element.inlines %}
                                 <div class='DL'>
-                                    <a {% if request.user.username %}href="{{ inline.file.url }}"{% else %} class='disabled' title='Connectez-vous pour télécharger le document' {% endif %} target="blank">
+                                    <a {% if request.user.username or inline.public_toggle %}href="{{ inline.file.url }}"{% else %} class='disabled' title='Connectez-vous pour télécharger le document' {% endif %} target="blank">
                                         <span>{{ inline.nature }}</span>
                                         <i class='fa fa-lg fa-download'></i>
                                     </a>

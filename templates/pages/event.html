@@ -17,11 +17,21 @@
     </div>
     <div class='container'>
         <div class='row'>
-            <div class='col-md-12'>
+            <div class='col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0'>
                 <h1 class='text-center'>{{ page.title }} {{ page.date_event }}</h1>
                 <div>
                     {{ page.content|richtext_filters|safe }}
                 </div>
+            </div>
+            <div class='col-md-12 pull-right'>
+                {% for inline in event.inlines %}
+                    <div class='DL'>
+                        <a {% if request.user.username or inline.public_toggle %}href="{{ inline.file.url }}"{% else %} class='disabled' title='Connectez-vous pour télécharger le document' {% endif %} target="blank">
+                            <span>{{ inline.nature }}</span>
+                            <i class='fa fa-lg fa-download'></i>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

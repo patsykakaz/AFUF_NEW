@@ -54,7 +54,9 @@ input[type="radio"], input[type="checkbox"]{
     background-color: rgb(234,97,114);
 }
 
-
+.nav-footer{
+    margin: 0;
+}
 
 
 @media screen and (max-width: 991px){

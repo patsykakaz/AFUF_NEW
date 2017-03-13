@@ -130,7 +130,7 @@ img{
     /*background-color: rgb(240,240,240);*/
     height: 175px;
     overflow: auto;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 .associate h3{
     margin-top: 0;
@@ -273,6 +273,7 @@ footer{
         height: 250px;
         text-align: center;
         font-size: 13px;
+        margin-bottom: 20px;
     }
     .associate h3{
         margin-top: 10px 0 8px 0;
@@ -297,6 +298,7 @@ footer{
         height: 275px;
         text-align: center;
         font-size: 12px;
+        margin-bottom: 15px;
     }
     .associate h3{
         margin: 7px 0;

@@ -29,14 +29,14 @@
         {% for element in Events %}
             <div class='event row'>
                 <h3 class='text-center'>
-                    {# <a href='{{ element.get_absolute_url }}'> #}
+                    <a href='{{ element.get_absolute_url }}'>
                         {{ element.title|title }}
-                    {# </a> #}
+                    </a>
                 </h3>
                 <div class='event_slot col-md-3 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2'>
-                    {# <a href='{{ element.get_absolute_url }}'> #}
+                    <a href='{{ element.get_absolute_url }}'>
                         <img class='img-thumbnail' src='{{ MEDIA_URL }}{% thumbnail element.illustration 0 400 %}' alt='illustration {{ element.title }}'>
-                    {# </a> #}
+                    </a>
                 </div>
 
                 <div class='event_slot col-md-6 col-sm-8 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
@@ -72,7 +72,7 @@
                             {% endif %}
                             {% for inline in element.inlines %}
                                 <div class='DL'>
-                                    <a {% if request.user.username %}href="{{ inline.file.url }}"{% else %} class='disabled' title='Connectez-vous pour télécharger le document' {% endif %} target="blank">
+                                    <a {% if request.user.username or inline.public_toggle %}href="{{ inline.file.url }}"{% else %} class='disabled' title='Connectez-vous pour télécharger le document' {% endif %} target="blank">
                                         <span>{{ inline.nature }}</span>
                                         <i class='fa fa-lg fa-download'></i>
                                     </a>
