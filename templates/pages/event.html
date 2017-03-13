@@ -5,15 +5,38 @@
 {% block extra_css %}
 <style type="text/css">
     .illustration img{
-        width: 100%;
+        max-width: 100%;
+        max-height: 400px;
+        margin: 30px;
+        padding: 10px;
+    }
+    .DL{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .DL a{
+        padding: 5px;
+        border: 1px solid rgb(100,100,100);
+    }
+    .DL a, .DL a:hover, .DL a:visited{
+        color: rgba(234,97,114,.8);
+        border-color: rgba(234,97,114,.8);
+    }
+    .DL a.disabled, .DL a.disabled:hover{
+        border: 1px solid rgb(100,100,100);
+        color: rgb(100,100,100);
+    }
+    #others{
+        margin-top: 20px;
+        margin-bottom: 50px;
     }
 </style>
 {% endblock %}
 
 {% block main %}
 
-    <div class='illustration'>
-        <img class='img-thumbnail' src='{{ MEDIA_URL }}{% thumbnail page.illustration 1200 300 %}' alt='illustration {{ page.title }}'>
+    <div class='illustration text-center'>
+        <img class='img-thumbnail' src='{{ MEDIA_URL }}{% thumbnail page.illustration 0 600 %}' alt='illustration {{ page.title }}'>
     </div>
     <div class='container'>
         <div class='row'>
@@ -23,8 +46,8 @@
                     {{ page.content|richtext_filters|safe }}
                 </div>
             </div>
-            <div class='col-md-12 pull-right'>
-                {% for inline in event.inlines %}
+            <div class='col-md-12 text-center'>
+                {% for inline in page.inlines %}
                     <div class='DL'>
                         <a {% if request.user.username or inline.public_toggle %}href="{{ inline.file.url }}"{% else %} class='disabled' title='Connectez-vous pour télécharger le document' {% endif %} target="blank">
                             <span>{{ inline.nature }}</span>
@@ -32,6 +55,14 @@
                         </a>
                     </div>
                 {% endfor %}
+            </div>
+            <div id='others' class='col-md-12 text-left'>
+                <h5>
+                    <a href='/events/'>
+                        <i class='fa fa-arrow-left'></i>
+                        Voir les autres évènements
+                    </a>
+                </h5>
             </div>
         </div>
     </div>

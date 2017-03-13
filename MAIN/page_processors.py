@@ -47,6 +47,7 @@ def processor_event(request, page):
 @processor_for(Event)
 def processor_event(request, page):
     page = Event.objects.get(pk=page.pk)
+    page.inlines = EventDocumentation.objects.filter(master=page)
     print page
     return locals()
 

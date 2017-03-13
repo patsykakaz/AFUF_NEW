@@ -15,6 +15,11 @@
         width: 100%;
     }
 </style>
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ blog_post.meta_title }}">
+<meta name="twitter:description" content="{{ blog_post.description }}">
+<meta name="twitter:image" content="http://afuf.fr{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 1200 0 %}">
 {% endblock %}
 
 {% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
@@ -27,6 +32,8 @@
 {% block meta_description %}{% metablock %}
 {{ blog_post.description }}
 {% endmetablock %}{% endblock %}
+
+
 
 {% block title %}
 {% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
@@ -105,5 +112,4 @@
         </div>
     </div>
     </div>
-
 {% endblock %}

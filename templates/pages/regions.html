@@ -20,24 +20,54 @@
     #CHU_map_layer{
         margin-bottom: 120px;
     }
+    #region_caption>p:last-child{
+        margin-bottom: 40px;
+    }
     .info{
         display: inline-block;
         padding :4px 10px;
         border-bottom: 1px solid rgba(0,0,0,.15);
         margin: 10px 10px 10px 0;
-        font-size: 10px;
+        font-size: 12px;
     }
     .half.liner{
         margin: 15px 0 20px 0;
         width:100%;
         border-top: none;
     }
+    .CHU_box a, .CHU_box a:hover{
+        text-decoration: none;
+    }
+    .CHU_box a h4{
+        display: inline-block;
+    }
+    .CHU_stats{
+        max-height: 0px;
+        overflow: hidden;
+        -moz-transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }.CHU_stats.open{
+        height: auto;
+        max-height: 400px;
+        overflow: auto;
+    }
 </style>
 {% endblock %}
+
 
 {% block extra_js %}
 <script src="{% static "js/main.js" %}"></script>
 <script src="{% static "js/index.js" %}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.CHU_box a').click(function(){
+            $(this).siblings('.CHU_stats').toggleClass('open');
+            $(this).children('i').toggleClass('hide');
+        });
+    });
+</script>
 {% endblock %}
 
 {% block main %}
@@ -52,7 +82,7 @@
 <div class='container'>
     <div class='row'>
         {% for element in all_CHU %}
-            <div class='col-md-12 col-xs-12'>
+            <div id='region_caption' class='col-md-12 col-xs-12'>
                 <h2>
                     <i class='fa fa-long-arrow-right'></i>
                     {{ element.0.0 }}
@@ -62,57 +92,64 @@
                 </div>
             </div>
             {% for CHU in element.1 %}
-            <div class='col-md-12 col-xs-12'>
-                <h4>{{ CHU.title }}</h4>
-                <div class='text-justify'>{{ CHU.CHU_description|richtext_filters|safe }}</div>
-                {% if CHU.nb_postes %}
-                <div class='info'>
-                    <b>Nombre de postes</b> : {{ CHU.nb_postes }}
-                </div>
-                {% endif %}
-                {% if CHU.nb_internes %}
-                <div class='info'>
-                    <b>Nombre d'internes</b> : {{ CHU.nb_internes }}
-                </div>
-                {% endif %}
-                {% if CHU.nb_services %}
-                <div class='info'>
-                    <b>Nombre de services</b> : {{ CHU.nb_services }}
-                </div>
-                {% endif %}
-                {% if CHU.nb_PUPH %}
-                <div class='info'>
-                    <b>Nombre de PUPH</b> : {{ CHU.nb_PUPH }}
-                </div>
-                {% endif %}
-                <div class='info'>
-                    <b>Chirurgie robotique</b> :
-                    {% if CHU.robotics %}
-                        Oui
-                    {% else %}
-                        Non
+            <div class='CHU_box col-md-12 col-xs-12'>
+                <a href='javascript:void(0);'>
+                    <h4>
+                        {{ CHU.title }}
+                    </h4>
+                    <i class='fa fa-expand'></i>
+                </a>
+                <div class='CHU_stats'>
+                    <div class='text-justify'>{{ CHU.CHU_description|richtext_filters|safe }}</div>
+                    {% if CHU.nb_postes %}
+                    <div class='info'>
+                        <b>Nombre de postes</b> : {{ CHU.nb_postes }}
+                    </div>
+                    {% endif %}
+                    {% if CHU.nb_internes %}
+                    <div class='info'>
+                        <b>Nombre d'internes</b> : {{ CHU.nb_internes }}
+                    </div>
+                    {% endif %}
+                    {% if CHU.nb_services %}
+                    <div class='info'>
+                        <b>Nombre de services</b> : {{ CHU.nb_services }}
+                    </div>
+                    {% endif %}
+                    {% if CHU.nb_PUPH %}
+                    <div class='info'>
+                        <b>Nombre de PUPH</b> : {{ CHU.nb_PUPH }}
+                    </div>
+                    {% endif %}
+                    <div class='info'>
+                        <b>Chirurgie robotique</b> :
+                        {% if CHU.robotics %}
+                            Oui
+                        {% else %}
+                            Non
+                        {% endif %}
+                    </div>
+                    {% if CHU.thematiques %}
+                    <div class='info'>
+                        <b>Thématiques</b> : {{ CHU.thematiques }}
+                    </div>
+                    {% endif %}
+                    {% if CHU.referent_AFUF %}
+                    <div class='info'>
+                        <b>Référent AFUF</b> : <a href='mailto:{{ CHU.referent_AFUF.email }}'>{{ CHU.referent_AFUF.prenom }} {{ CHU.referent_AFUF.nom }}</a>
+                    </div>
+                    {% endif %}
+                    {% if CHU.chef_service %}
+                    <div class='info'>
+                        <b>Chef de service</b> : {{ CHU.chef_service }}
+                    </div>
+                    {% endif %}
+                    {% if CHU.coordinateur %}
+                    <div class='info'>
+                        <b>Coordinateur</b> : {{ CHU.coordinateur }}
+                    </div>
                     {% endif %}
                 </div>
-                {% if CHU.thematiques %}
-                <div class='info'>
-                    <b>Thématiques</b> : {{ CHU.thematiques }}
-                </div>
-                {% endif %}
-                {% if CHU.referent_AFUF %}
-                <div class='info'>
-                    <b>Référent AFUF</b> : <a href='mailto:{{ CHU.referent_AFUF.email }}'>{{ CHU.referent_AFUF.prenom }} {{ CHU.referent_AFUF.nom }}</a>
-                </div>
-                {% endif %}
-                {% if CHU.chef_service %}
-                <div class='info'>
-                    <b>Chef de service</b> : {{ CHU.chef_service }}
-                </div>
-                {% endif %}
-                {% if CHU.coordinateur %}
-                <div class='info'>
-                    <b>Coordinateur</b> : {{ CHU.coordinateur }}
-                </div>
-                {% endif %}
             </div>
             {% endfor %}
             <div class='col-md-12 col-xs-12'>
