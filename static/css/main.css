@@ -16,6 +16,9 @@ body{
 a, a:hover, a:visited{
     text-decoration: none;
 }
+a.grey_link, a.grey_link:hover, a.grey_link:visited{
+    color: rgba(0,0,0,.4);
+}
 .text-red, .text-red:hover, .text-red:visited,
 a.text-red, a.text-red:hover, a.text-red:visited{
     color: rgb(234,97,114);

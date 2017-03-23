@@ -94,7 +94,7 @@
                                         {{ element.title }}
                                     </h3>
                                     <div class='text-justify'>
-                                        {{ element.description_from_content|safe }}
+                                        {{ element.content|richtext_filters|safe }}
                                     </div>
                                 </div>
                                 {% if element.mail %}
@@ -162,7 +162,7 @@
                                         {{ element.title }}
                                     </h3>
                                     <div class='text-justify'>
-                                        {{ element.description_from_content|safe }}
+                                        {{ element.content|richtext_filters|safe }}
                                     </div>
                                 </div>
                                 {% if element.mail %}
@@ -229,7 +229,7 @@
                                         {{ element.title }}
                                     </h3>
                                     <div class='text-justify'>
-                                        {{ element.description_from_content|safe }}
+                                        {{ element.content|richtext_filters|safe }}
                                     </div>
                                 </div>
                                 {% if element.mail %}
